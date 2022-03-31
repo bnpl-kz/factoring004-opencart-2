@@ -17,26 +17,6 @@ class ModelExtensionPaymentFactoring004 extends Model
         $this->tableName = DB_PREFIX . 'factoring004_order_preapps';
     }
 
-    public function install()
-    {
-        $this->db->query(sprintf(
-            'CREATE TABLE IF NOT EXISTS %s (
-                id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                order_id INT UNSIGNED NOT NULL,
-                preapp_uid VARCHAR(255) NOT NULL,
-                created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-            )',
-            $this->db->escape($this->tableName)
-        ));
-    }
-
-    public function uninstall()
-    {
-        $this->db->query(
-            sprintf('DROP TABLE IF EXISTS %s', $this->db->escape($this->tableName))
-        );
-    }
-
     /**
      * @param int|string $orderId
      * @param string $preappId

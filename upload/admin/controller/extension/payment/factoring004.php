@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @property-read \Loader $load
+ * @property-read \ModelExtensionPaymentFactoring004 $model_extension_payment_factoring004
+ */
 class ControllerExtensionPaymentFactoring004 extends Controller {
     private $error = array();
 
@@ -50,6 +54,24 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
 
         $this->response->setOutput($this->load->view('extension/payment/factoring004', $data));
 
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function install()
+    {
+        $this->load->model('extension/payment/factoring004');
+        $this->model_extension_payment_factoring004->install();
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function uninstall()
+    {
+        $this->load->model('extension/payment/factoring004');
+        $this->model_extension_payment_factoring004->uninstall();
     }
 
     private function getDeliveryItems()

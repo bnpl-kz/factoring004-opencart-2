@@ -5,6 +5,9 @@
  */
 class ModelExtensionPaymentFactoring004 extends Model
 {
+    const MIN_TOTAL_PRICE = 6000;
+    const MAX_TOTAL_PRICE = 200000;
+
     /**
      * @var string
      */
@@ -15,6 +18,22 @@ class ModelExtensionPaymentFactoring004 extends Model
         parent::__construct($registry);
 
         $this->tableName = DB_PREFIX . 'factoring004_order_preapps';
+    }
+
+    public function getMethod($address, $total)
+    {
+        $this->load->language('extension/payment/factoring004');
+        $price = ceil($total);
+
+        if ($price < self::MIN_TOTAL_PRICE || $price > self::MAX_TOTAL_PRICE) {
+            return [];
+        }
+
+        return array(
+            'code'       => 'factoring004',
+            'title'      => $this->language->get('text_title'),
+            'terms'      => ''
+        );
     }
 
     /**

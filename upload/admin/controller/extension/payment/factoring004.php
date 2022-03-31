@@ -14,7 +14,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
         $this->load->model('setting/setting');
         $this->load->model('extension/payment/factoring004');
 
-        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+        if (($this->request->server['REQUEST_METHOD'] === 'POST') && $this->validate()) {
             $this->request->post['payment_factoring004_agreement_file'] = $this->agreementFileUpload($this->request->files['payment_factoring004_agreement_file']);
             $this->request->post['payment_factoring004_delivery'] = implode(',',$this->request->post['payment_factoring004_delivery']);
             $this->model_setting_setting->editSetting('payment_factoring004', $this->request->post);
@@ -171,7 +171,6 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
         $data['footer'] = $this->load->controller('common/footer');
 
         $this->response->setOutput($this->load->view('extension/payment/factoring004', $data));
-
     }
 
     /**

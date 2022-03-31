@@ -9,9 +9,35 @@ declare(strict_types=1);
  * @property-read \Config $config
  * @property-read \DB $db
  */
+
 class ControllerExtensionPaymentFactoring004 extends Controller
 {
     const REQUIRED_FIELDS = ['billNumber', 'status', 'preappId'];
+
+    public function index()
+    {
+        $data['button_confirm'] = $this->language->get('button_confirm');
+
+        $this->load->model('checkout/order');
+
+        if (!isset($this->session->data['order_id'])) {
+            return false;
+        }
+
+        if (($this->request->server['REQUEST_METHOD'] === 'POST')) {
+            $this->createPreapp($this->model_checkout_order->getOrder($this->session->data['order_id']));
+        }
+
+        $data['action'] = $this->url->link('extension/payment/factoring004');
+
+        return $this->load->view('extension/payment/factoring004', $data);
+
+    }
+
+    private function createPreapp($data)
+    {
+        print_r($data);die;
+    }
 
     /**
      * @throws \Exception

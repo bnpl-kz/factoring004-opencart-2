@@ -47,7 +47,7 @@ class ModelExtensionPaymentFactoring004 extends Model
     {
         $this->db->query(
             sprintf(
-                'INSERT INTO %s (order_id, preapp_uid) VALUES (%d, %s)',
+                "INSERT INTO %s (order_id, preapp_uid) VALUES (%d, '%s')",
                 $this->db->escape($this->tableName),
                 $this->db->escape($orderId),
                 $this->db->escape($preappId),

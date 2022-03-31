@@ -28,7 +28,7 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-api-host">{{ entry_api_host }}</label>
                         <div class="col-sm-10">
-                            <input type="text" name="payment_factoring004_api_host" placeholder="{{ entry_api_host }}" id="input-api-host" class="form-control" />
+                            <input type="text" value="{{ payment_factoring004_api_host }}" name="payment_factoring004_api_host" placeholder="{{ entry_api_host }}" id="input-api-host" class="form-control" />
                             {% if error_api_host %}
                                 <div class="text-danger">{{ error_api_host }}</div>
                             {% endif %}
@@ -37,7 +37,7 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-preapp-token">{{ entry_preapp_token }}</label>
                         <div class="col-sm-10">
-                            <input type="text" name="payment_factoring004_preapp_token" placeholder="{{ entry_preapp_token }}" id="input-preapp-token" class="form-control" />
+                            <input type="text" value="{{ payment_factoring004_preapp_token }}" name="payment_factoring004_preapp_token" placeholder="{{ entry_preapp_token }}" id="input-preapp-token" class="form-control" />
                             {% if error_preapp_token %}
                                 <div class="text-danger">{{ error_preapp_token }}</div>
                             {% endif %}
@@ -46,7 +46,7 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-delivery-token">{{ entry_delivery_token }}</label>
                         <div class="col-sm-10">
-                            <input type="text" name="payment_factoring004_delivery_token" placeholder="{{ entry_delivery_token }}" id="input-delivery-token" class="form-control" />
+                            <input type="text" value="{{ payment_factoring004_delivery_token }}" name="payment_factoring004_delivery_token" placeholder="{{ entry_delivery_token }}" id="input-delivery-token" class="form-control" />
                             {% if error_delivery_token %}
                                 <div class="text-danger">{{ error_delivery_token }}</div>
                             {% endif %}
@@ -55,7 +55,7 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-partner-name">{{ entry_partner_name }}</label>
                         <div class="col-sm-10">
-                            <input type="text" name="payment_factoring004_partner_name" placeholder="{{ entry_partner_name }}" id="input-partner-name" class="form-control" />
+                            <input type="text" value="{{ payment_factoring004_partner_name }}" name="payment_factoring004_partner_name" placeholder="{{ entry_partner_name }}" id="input-partner-name" class="form-control" />
                             {% if error_partner_name %}
                                 <div class="text-danger">{{ error_partner_name }}</div>
                             {% endif %}
@@ -64,7 +64,7 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-partner-code">{{ entry_partner_code }}</label>
                         <div class="col-sm-10">
-                            <input type="text" name="payment_factoring004_partner_code" placeholder="{{ entry_partner_code }}" id="input-partner-code" class="form-control" />
+                            <input type="text" value="{{ payment_factoring004_partner_code }}" name="payment_factoring004_partner_code" placeholder="{{ entry_partner_code }}" id="input-partner-code" class="form-control" />
                             {% if error_partner_code %}
                                 <div class="text-danger">{{ error_partner_code }}</div>
                             {% endif %}
@@ -73,7 +73,7 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-point-code">{{ entry_point_code }}</label>
                         <div class="col-sm-10">
-                            <input type="text" name="payment_factoring004_point_code" placeholder="{{ entry_point_code }}" id="input-point-code" class="form-control" />
+                            <input type="text" value="{{ payment_factoring004_point_code }}" name="payment_factoring004_point_code" placeholder="{{ entry_point_code }}" id="input-point-code" class="form-control" />
                             {% if error_point_code %}
                                 <div class="text-danger">{{ error_point_code }}</div>
                             {% endif %}
@@ -82,7 +82,7 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-partner-email">{{ entry_partner_email }}</label>
                         <div class="col-sm-10">
-                            <input type="text" name="payment_factoring004_partner_email" placeholder="{{ entry_partner_email }}" id="input-partner-email" class="form-control" />
+                            <input type="text" value="{{ payment_factoring004_partner_email }}" name="payment_factoring004_partner_email" placeholder="{{ entry_partner_email }}" id="input-partner-email" class="form-control" />
                             {% if error_partner_email %}
                                 <div class="text-danger">{{ error_partner_email }}</div>
                             {% endif %}
@@ -91,33 +91,28 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-partner-website">{{ entry_partner_website }}</label>
                         <div class="col-sm-10">
-                            <input type="text" name="payment_factoring004_partner_website" placeholder="{{ entry_partner_website }}" id="input-partner-website" class="form-control" />
+                            <input type="text" value="{{ payment_factoring004_partner_website }}" name="payment_factoring004_partner_website" placeholder="{{ entry_partner_website }}" id="input-partner-website" class="form-control" />
                             {% if error_partner_website %}
                                 <div class="text-danger">{{ error_partner_website }}</div>
                             {% endif %}
                         </div>
                     </div>
-                    <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-agreement-file">{{ entry_agreement_file }}</label>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-delivery">{{ entry_delivery_items }}</label>
                         <div class="col-sm-10">
-                            <input type="file" accept="application/pdf" name="payment_factoring004_agreement_file" placeholder="{{ entry_agreement_file }}" id="input-agreement-file" class="form-control" />
-                            {% if error_agreement_file %}
-                                <div class="text-danger">{{ error_agreement_file }}</div>
-                            {% endif %}
+                            <select style="height: 60px !important;" multiple name="payment_factoring004_delivery[]" id="input-delivery" class="form-control">
+                                {% for delivery in deliveries %}
+                                    <option {% for item in payment_factoring004_delivery %} {% if item == delivery.id %} selected {% endif %}  {% endfor %} value="{{ delivery.id }}">{{ delivery.name }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-delivery">{{ entry_status }}</label>
+                        <label class="col-sm-2 control-label" for="input-agreement-file">{{ entry_agreement_file }}</label>
                         <div class="col-sm-10">
-                            <select name="payment_factoring004_delivery" id="input-delivery" class="form-control">
-                                {% if payment_factoring004_delivery %}
-                                    <option value="1" selected="selected">{{ text_enabled }}</option>
-                                    <option value="0">{{ text_disabled }}</option>
-                                {% else %}
-                                    <option value="1">{{ text_enabled }}</option>
-                                    <option value="0" selected="selected">{{ text_disabled }}</option>
-                                {% endif %}
-                            </select>
+                            <button type="button" class="btn bg-primary" onclick="document.getElementById('get-agreement-file').click()">{% if payment_factoring004_agreement_file is empty %} Выбрать файл оферты {% else %} Изменить файл оферты {% endif %}</button>
+                            <input name="payment_factoring004_agreement_file" type="file" id="get-agreement-file" style="display:none">
+                            <br><small id="input-agreement-file-help" class="form-text text-muted">{{ text_agreement_file }}</small>
                         </div>
                     </div>
                     <div class="form-group">

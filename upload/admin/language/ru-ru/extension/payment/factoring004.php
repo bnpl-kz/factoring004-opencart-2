@@ -9,11 +9,8 @@ $_['text_success']		                = 'Настройки успешно изм�
 $_['text_edit']                         = 'Редактирование';
 $_['text_pay']			                = 'Рассрочка 0-0-4';
 $_['text_factoring004']		            = '<img src="view/image/payment/factoring004.png" alt="Factoring004" title="Factoring004" style="border: 1px solid #EEEEEE;" />';
-
-// Text
 $_['text_extensions']     				= 'Расширение';
-$_['text_edit']          				= 'Редактирование';
-
+$_['text_agreement_file']		        = 'Загрузите файл оферты в случае, если вы будете использовать';
 // Entry
 $_['entry_api_host']                    = 'API Host';
 $_['entry_preapp_token']                = 'OAuth Token bnpl-partners';
@@ -32,6 +29,7 @@ $_['help_total_min']		            = 'Минимальная сумма зака�
 $_['help_total_max']		            = 'Максимальная сумма заказа 200000. Выше этой суммы метод будет недоступен.';
 
 // Error
+$_['error_permission']	                = 'У вас недостаточно прав для внесения изменений!';
 $_['error_api_host']                    = 'Необходимо указать API Host';
 $_['error_preapp_token']                = 'Необходимо указать OAuth Token bnpl-partners';
 $_['error_delivery_token']              = 'Необходимо указать OAuth Token AccountingService';

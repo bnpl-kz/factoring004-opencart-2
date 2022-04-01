@@ -11,6 +11,8 @@ $_['text_pay']			                = 'Рассрочка 0-0-4';
 $_['text_factoring004']		            = '<img src="view/image/payment/factoring004.png" alt="Factoring004" title="Factoring004" style="border: 1px solid #EEEEEE;" />';
 $_['text_extensions']     				= 'Расширение';
 $_['text_agreement_file']		        = 'Загрузите файл оферты в случае, если вы будете использовать';
+
+
 // Entry
 $_['entry_api_host']                    = 'API Host';
 $_['entry_preapp_token']                = 'OAuth Token bnpl-partners';
@@ -39,3 +41,8 @@ $_['error_point_code']				 	= 'Необходимо указать Point Code';
 $_['error_partner_email']	 		    = 'Необходимо указать Partner Email';
 $_['error_partner_website']		 		= 'Необходимо указать Partner Website';
 $_['error_agreement_file']		 		= 'Необходимо загрузить файл политики';
+$_['error_agreement_file_delete']		= 'Неудача!';
+
+
+// Success
+$_['success_agreement_file_delete']		= 'Успех!';

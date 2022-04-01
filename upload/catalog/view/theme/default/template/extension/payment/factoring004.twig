@@ -1,7 +1,40 @@
-<form action="{{ action }}" method="post">
+<form id="factoring004-submit-form" action="{{ action }}" method="post">
     <div class="buttons">
         <div class="pull-right">
-            <input type="submit" value="{{ button_confirm }}" class="btn btn-primary" />
+            <input id="factoring004-submit-button" type="submit" value="{{ button_confirm }}" class="btn btn-primary" />
         </div>
     </div>
 </form>
+
+
+
+<script>
+    let form = $('#factoring004-submit-form');
+    let button = $('#factoring004-submit-button');
+    form.click(function (e) {
+        e.preventDefault();
+        let url = form.attr('action');
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            type: 'post',
+            contentType: 'application/json',
+            beforeSend: function () {
+                button.button('loading');
+            },
+            complete: function () {
+                button.button('reset');
+            },
+            success: function(response) {
+                if (!response.success) {
+                    alert(response.error)
+                    return;
+                }
+                window.location.replace(response.redirectLink)
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText)
+            }
+        })
+    })
+</script>

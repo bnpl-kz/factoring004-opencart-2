@@ -32,7 +32,8 @@ class ModelExtensionPaymentFactoring004 extends Model
         return array(
             'code'       => 'factoring004',
             'title'      => $this->language->get('text_title'),
-            'terms'      => ''
+            'terms'      => 'asdsada',
+            'sort_order' => 0
         );
     }
 

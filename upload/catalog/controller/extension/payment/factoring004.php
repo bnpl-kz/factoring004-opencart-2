@@ -9,7 +9,6 @@ declare(strict_types=1);
  * @property-read \Config $config
  * @property-read \DB $db
  */
-
 class ControllerExtensionPaymentFactoring004 extends Controller
 {
     const REQUIRED_FIELDS = ['billNumber', 'status', 'preappId'];
@@ -25,7 +24,8 @@ class ControllerExtensionPaymentFactoring004 extends Controller
         }
 
         if (($this->request->server['REQUEST_METHOD'] === 'POST')) {
-            $this->createPreapp($this->model_checkout_order->getOrder($this->session->data['order_id']));
+            $this->preapp($this->model_checkout_order->getOrder($this->session->data['order_id']));
+            exit;
         }
 
         $data['action'] = $this->url->link('extension/payment/factoring004');
@@ -34,9 +34,57 @@ class ControllerExtensionPaymentFactoring004 extends Controller
 
     }
 
-    private function createPreapp($data)
+    private function preapp($data)
     {
-        print_r($data);die;
+        header('Content-Type: application/json');
+        try {
+            $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], 2);
+            $products = $this->model_checkout_order->getOrderProducts($this->session->data['order_id']);
+            require_once DIR_SYSTEM . 'library/factoring004/vendor/autoload.php';
+            $response = \BnplPartners\Factoring004\Api::create(
+                $this->config->get('payment_factoring004_api_host'),
+                new \BnplPartners\Factoring004\Auth\BearerTokenAuth($this->config->get('payment_factoring004_preapp_token'))
+            )->preApps->preApp(
+                \BnplPartners\Factoring004\PreApp\PreAppMessage::createFromArray([
+                    'partnerData' => [
+                        'partnerName' => $this->config->get('payment_factoring004_partner_name'),
+                        'partnerCode' => $this->config->get('payment_factoring004_partner_code'),
+                        'pointCode' => $this->config->get('payment_factoring004_point_code'),
+                        'partnerEmail' => $this->config->get('payment_factoring004_partner_email'),
+                        'partnerWebsite' => $this->config->get('payment_factoring004_partner_website'),
+                    ],
+                    'billNumber' => (string)$data['order_id'],
+                    'billAmount' => (int)ceil($data['total']),
+                    'itemsQuantity' => array_sum(array_map(function ($item) {
+                        return $item['quantity'];
+                    }, $products)),
+                    'items' => array_map(function ($item) {
+                        return [
+                            'itemId' => (string)$item['product_id'],
+                            'itemName' => $item['name'] . '/' . $item['model'],
+                            'itemCategory' => $item['name'],
+                            'itemQuantity' => (int)$item['quantity'],
+                            'itemPrice' => (int)ceil($item['price']),
+                            'itemSum' => (int)ceil($item['total']),
+                        ];
+                    }, $products),
+                    'successRedirect' => $this->url->link('checkout/success'),
+                    'failRedirect' => $this->url->link('checkout/failure'),
+                    'postLink' => $this->url->link('extension/payment/factoring004/postLink'),
+                    'phoneNumber' => preg_replace('/^8|\+7/', '7', $data['telephone']),
+                    'deliveryPoint' => [
+                        'region' => $data['shipping_zone'],
+                        'city' => $data['shipping_city'],
+                        'street' => $data['shipping_address_1'] . ' ' . $data['shipping_address_2']
+                    ]
+                ])
+            );
+            $this->jsonResponse(['success' => true, 'redirectLink' => $response->getRedirectLink()]);
+        }
+        catch (\Exception $e) {
+            $this->log->write('Factoring004: ' . $e);
+            $this->jsonResponse(['success' => false, 'error' => 'An error occurred!']);
+        }
     }
 
     /**

@@ -22,6 +22,16 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $this->response->redirect($this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment', true));
         }
 
+        if (($this->request->server['REQUEST_METHOD'] === 'DELETE')) {
+            if (!$this->agreementFileDelete($this->request->get['filename'])) {
+                echo json_encode(['success'=>false,'message'=>$this->language->get('error_agreement_file_delete')]);
+            } else {
+                $this->model_setting_setting->editSettingValue('payment_factoring004', 'payment_factoring004_agreement_file');
+                echo json_encode(['success'=>true,'message'=>$this->language->get('success_agreement_file_delete')]);
+            }
+            return;
+        }
+
         $data['breadcrumbs'] = array();
 
         $data['breadcrumbs'][] = array(
@@ -154,9 +164,9 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
         }
 
         if (isset($this->request->post['payment_factoring004_agreement_file'])) {
-            $data['payment_factoring004_agreement_file'] = DIR_UPLOAD . $this->request->post['payment_factoring004_agreement_file'];
+            $data['payment_factoring004_agreement_file'] = $this->request->post['payment_factoring004_agreement_file'];
         } else {
-            $data['payment_factoring004_agreement_file'] = DIR_UPLOAD . $this->config->get('payment_factoring004_agreement_file');
+            $data['payment_factoring004_agreement_file'] = $this->config->get('payment_factoring004_agreement_file');
         }
 
         if (isset($this->request->post['payment_factoring004_status'])) {
@@ -191,7 +201,8 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
         $this->model_extension_payment_factoring004->uninstall();
     }
 
-    protected function validate() {
+    protected function validate()
+    {
         if (!$this->user->hasPermission('modify', 'extension/payment/factoring004')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
@@ -271,9 +282,16 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
         if ($agreement['tmp_name']) {
             $ext = pathinfo($agreement['name'], PATHINFO_EXTENSION);
             $filename = basename($agreement['name'],'.'.$ext) . '_' . token(32) . '.' . $ext;
-            move_uploaded_file($agreement['tmp_name'], DIR_UPLOAD . $filename);
+            move_uploaded_file($agreement['tmp_name'], DIR_IMAGE . $filename);
         }
         return $filename;
     }
 
+    private function agreementFileDelete($filename)
+    {
+        if (file_exists(DIR_IMAGE . $filename)) {
+            return unlink(DIR_IMAGE . $filename);
+        }
+        return true;
+    }
 }

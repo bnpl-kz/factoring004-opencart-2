@@ -1,5 +1,10 @@
 {
     "require": {
         "bnpl-partners/factoring004": "dev-legacy"
+    },
+    "autoload": {
+        "psr-4": {
+            "BnplPartners\\Factoring004Payment\\": "src"
+        }
     }
 }

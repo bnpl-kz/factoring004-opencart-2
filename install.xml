@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Factoring 0-0-4</name>
+    <code>factoring004</code>
+    <version>3.x</version>
+    <author>BNPL partners</author>
+    <link>http://example.com</link>
+
+    <file path="catalog/controller/api/order.php">
+        <operation>
+            <search>
+                <![CDATA[
+                    <?php
+                ]]>
+            </search>
+            <add position="after" action="insert" offset="0">
+                <![CDATA[
+                    require_once DIR_SYSTEM . 'library/factoring004/vendor/autoload.php';
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/api/order.php">
+        <operation>
+            <search>
+                <![CDATA[
+                    $this->model_checkout_order->editOrder($order_id, $order_data);
+                ]]>
+            </search>
+            <add position="before" action="insert" offset="0">
+                <![CDATA[
+                    // send and check otp
+                    $deliveryResponse = \BnplPartners\Factoring004Payment\DeliveryManager::create($this->registry)
+                        ->delivery($order_info, $this->request->post);
+
+                    if ($deliveryResponse->isProcessed()) {
+                        $json['otp'] = $deliveryResponse->isSentOtp();
+
+                        if (!$deliveryResponse->isSuccess()) {
+                            $json['error'] = $deliveryResponse->getMessage();
+                            $this->response->addHeader('Content-Type: application/json');
+                            $this->response->setOutput(json_encode($json));
+                            return;
+                        }
+
+                        if ($deliveryResponse->isSentOtp()) {
+                            $json['success'] = $deliveryResponse->getMessage();
+                            $this->response->addHeader('Content-Type: application/json');
+                            $this->response->setOutput(json_encode($json));
+                            return;
+                        }
+                    }
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/api/order.php">
+        <operation>
+            <search>
+                <![CDATA[
+                    $this->model_checkout_order->addOrderHistory($order_id, $this->request->post['order_status_id'], $this->request->post['comment'], $this->request->post['notify'], $this->request->post['override']);
+                ]]>
+            </search>
+            <add position="before" action="insert" offset="0">
+                <![CDATA[
+                    // send and check otp
+                    $deliveryResponse = \BnplPartners\Factoring004Payment\DeliveryManager::create($this->registry)
+                        ->delivery($order_info, $this->request->post);
+
+                if ($deliveryResponse->isProcessed()) {
+                    $json['otp'] = $deliveryResponse->isSentOtp();
+
+                    if (!$deliveryResponse->isSuccess()) {
+                        $json['error'] = $deliveryResponse->getMessage();
+                        $this->response->addHeader('Content-Type: application/json');
+                        $this->response->setOutput(json_encode($json));
+                        return;
+                    }
+
+                    if ($deliveryResponse->isSentOtp()) {
+                        $json['success'] = $deliveryResponse->getMessage();
+                        $this->response->addHeader('Content-Type: application/json');
+                        $this->response->setOutput(json_encode($json));
+                        return;
+                    }
+                }
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/sale/order_info.twig">
+        <operation>
+            <search>
+                <![CDATA[
+                    'order_status_id='
+                ]]>
+            </search>
+            <add position="replace" action="insert" offset="0">
+                <![CDATA[
+                    'factoring004_otp=' + encodeURIComponent($('#factoring004_otp').val()) + '&' + 'order_status_id='
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/sale/order_info.twig">
+        <operation>
+            <search>
+                <![CDATA[
+                    $('#button-history').button('loading');
+                ]]>
+            </search>
+            <add position="after" action="insert" offset="0">
+                <![CDATA[
+                    $('#factoring004-otp-error').remove();
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/sale/order_info.twig">
+        <operation>
+            <search>
+                <![CDATA[
+                    $('#button-history').button('reset');
+                ]]>
+            </search>
+            <add position="after" action="insert" offset="0">
+                <![CDATA[
+                    $('#btn-factoring004-otp').button('reset');
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/sale/order_info.twig">
+        <operation>
+            <search>
+                <![CDATA[
+                    $('#history').before('<div class="alert alert-danger
+                ]]>
+            </search>
+            <add position="before" action="insert" offset="0">
+                <![CDATA[
+                    if ($('#modal-factoring004-otp').hasClass('in')) {
+                      $('#form-factoring004-otp').before('<div id="factoring004-otp-error" class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                      return;
+                    }
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/sale/order_info.twig">
+        <operation>
+            <search>
+                <![CDATA[
+                    $('#history').before('<div class="alert alert-success
+                ]]>
+            </search>
+            <add position="before" action="insert" offset="2">
+                <![CDATA[
+                    if (json.otp) {
+                      $('#modal-factoring004-otp').modal({
+                          backdrop: 'static',
+                      });
+                      return;
+                  }
+
+                  $('#modal-factoring004-otp').modal('hide');
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/sale/order_info.twig">
+        <operation>
+            <search>
+                <![CDATA[
+                    {{ footer }}
+                ]]>
+            </search>
+            <add position="before" action="insert" offset="0">
+                <![CDATA[
+                    <div id="modal-factoring004-otp" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">Check OTP</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="form-factoring004-otp" action="#" method="post">
+                                        <div class="form-group">
+                                            <label for="factoring004-otp">OTP</label>
+                                            <input type="text" id="factoring004_otp" name="factoring004_otp" class="form-control" placeholder="Enter OTP code" minlength="4" maxlength="4" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <button id="btn-factoring004-otp" class="btn btn-primary">Check</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $('#modal-factoring004-otp')
+                            .on('shown.bs.modal', () => $('#factoring004_otp').focus())
+                            .on('hidden.bs.modal', () => $('#factoring004_otp').val(''))
+                            .on('submit', e => {
+                                e.preventDefault();
+                                $('#button-history').click();
+                                $('#btn-factoring004-otp').button('loading');
+                            })
+                    </script>
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/sale/order_form.twig">
+        <operation>
+            <search>
+                <![CDATA[
+                    data: $('select[name=\'payment_method\']
+                ]]>
+            </search>
+            <add position="replace" action="insert" offset="0">
+                <![CDATA[data: $('#factoring004_otp, select[name=\'payment_method\']]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/sale/order_form.twig">
+        <operation>
+            <search>
+                <![CDATA[
+                    $('#button-save').button('loading');
+                ]]>
+            </search>
+            <add position="after" action="insert" offset="0">
+                <![CDATA[
+                    $('#factoring004-otp-error').remove();
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/sale/order_form.twig">
+        <operation>
+            <search>
+                <![CDATA[
+                    $('#button-save').button('reset');
+                ]]>
+            </search>
+            <add position="after" action="insert" offset="0">
+                <![CDATA[
+                    $('#btn-factoring004-otp').button('reset');
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/sale/order_form.twig">
+        <operation>
+            <search>
+                <![CDATA[
+                    if (json['order_id']) {
+                ]]>
+            </search>
+            <add position="before" action="insert" offset="7">
+                <![CDATA[
+                    if ($('#modal-factoring004-otp').hasClass('in')) {
+                        $('#form-factoring004-otp').before('<div id="factoring004-otp-error" class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                        return;
+                    }
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/sale/order_form.twig">
+        <operation>
+            <search>
+                <![CDATA[
+                    if (json['order_id']) {
+                ]]>
+            </search>
+            <add position="before" action="insert" offset="3">
+                <![CDATA[
+                    if (json.otp) {
+                        $('#modal-factoring004-otp').modal({
+                            backdrop: 'static',
+                        });
+                        return;
+                    }
+
+                    $('#modal-factoring004-otp').modal('hide');
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/view/template/sale/order_form.twig">
+        <operation>
+            <search>
+                <![CDATA[
+                    {{ footer }}
+                ]]>
+            </search>
+            <add position="before" action="insert" offset="0">
+                <![CDATA[
+                    <div id="modal-factoring004-otp" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">Check OTP</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="form-factoring004-otp" action="#" method="post">
+                                        <div class="form-group">
+                                            <label for="factoring004-otp">OTP</label>
+                                            <input type="text" id="factoring004_otp" name="factoring004_otp" class="form-control" placeholder="Enter OTP code" minlength="4" maxlength="4" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <button id="btn-factoring004-otp" class="btn btn-primary">Check</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $('#modal-factoring004-otp')
+                            .on('shown.bs.modal', () => $('#factoring004_otp').focus())
+                            .on('hidden.bs.modal', () => $('#factoring004_otp').val(''))
+                            .on('submit', e => {
+                                e.preventDefault();
+                                $('#button-save').click();
+                                $('#btn-factoring004-otp').button('loading');
+                            })
+                    </script>
+                ]]>
+            </add>
+        </operation>
+    </file>
+</modification>

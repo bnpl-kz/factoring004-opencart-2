@@ -131,10 +131,10 @@ class ControllerExtensionPaymentFactoring004 extends Controller
 
         if ($request['status'] === 'declined') {
             $response = 'declined';
-            $orderStatusId = 10;
+            $orderStatusId = $this->config->get('payment_factoring004_unpaid_order_status_id');
         } elseif ($request['status'] === 'completed') {
             $response = 'ok';
-            $orderStatusId = 5;
+            $orderStatusId = $this->config->get('payment_factoring004_paid_order_status_id');
         } else {
             $this->jsonResponse(['success' => false, 'error' => 'Unexpected status'], 400, 'Bad Request');
             return;

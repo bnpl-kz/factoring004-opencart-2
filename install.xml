@@ -31,21 +31,22 @@
             <add position="before" action="insert" offset="0">
                 <![CDATA[
                     // send and check otp
-                    $deliveryResponse = \BnplPartners\Factoring004Payment\DeliveryManager::create($this->registry)
-                        ->delivery($order_info, $this->request->post);
+                    $managerResponse = \BnplPartners\Factoring004Payment\OrderManager::create($this->registry)
+                        ->handle($order_info, $this->request->post);
 
-                    if ($deliveryResponse->isProcessed()) {
-                        $json['otp'] = $deliveryResponse->isSentOtp();
+                    if ($managerResponse->isProcessed()) {
+                        $json['otp'] = $managerResponse->isSentOtp();
+                        $json['return'] = $managerResponse->isReturn();
 
-                        if (!$deliveryResponse->isSuccess()) {
-                            $json['error'] = $deliveryResponse->getMessage();
+                        if (!$managerResponse->isSuccess()) {
+                            $json['error'] = $managerResponse->getMessage();
                             $this->response->addHeader('Content-Type: application/json');
                             $this->response->setOutput(json_encode($json));
                             return;
                         }
 
-                        if ($deliveryResponse->isSentOtp()) {
-                            $json['success'] = $deliveryResponse->getMessage();
+                        if ($managerResponse->isSentOtp()) {
+                            $json['success'] = $managerResponse->getMessage();
                             $this->response->addHeader('Content-Type: application/json');
                             $this->response->setOutput(json_encode($json));
                             return;
@@ -66,21 +67,22 @@
             <add position="before" action="insert" offset="0">
                 <![CDATA[
                     // send and check otp
-                    $deliveryResponse = \BnplPartners\Factoring004Payment\DeliveryManager::create($this->registry)
-                        ->delivery($order_info, $this->request->post);
+                    $managerResponse = \BnplPartners\Factoring004Payment\OrderManager::create($this->registry)
+                        ->handle($order_info, $this->request->post);
 
-                if ($deliveryResponse->isProcessed()) {
-                    $json['otp'] = $deliveryResponse->isSentOtp();
+                if ($managerResponse->isProcessed()) {
+                    $json['otp'] = $managerResponse->isSentOtp();
+                    $json['return'] = $managerResponse->isReturn();
 
-                    if (!$deliveryResponse->isSuccess()) {
-                        $json['error'] = $deliveryResponse->getMessage();
+                    if (!$managerResponse->isSuccess()) {
+                        $json['error'] = $managerResponse->getMessage();
                         $this->response->addHeader('Content-Type: application/json');
                         $this->response->setOutput(json_encode($json));
                         return;
                     }
 
-                    if ($deliveryResponse->isSentOtp()) {
-                        $json['success'] = $deliveryResponse->getMessage();
+                    if ($managerResponse->isSentOtp()) {
+                        $json['success'] = $managerResponse->getMessage();
                         $this->response->addHeader('Content-Type: application/json');
                         $this->response->setOutput(json_encode($json));
                         return;
@@ -100,7 +102,7 @@
             </search>
             <add position="replace" action="insert" offset="0">
                 <![CDATA[
-                    'factoring004_otp=' + encodeURIComponent($('#factoring004_otp').val()) + '&' + 'order_status_id='
+                    'factoring004_otp=' + encodeURIComponent($('#factoring004_otp').val()) + '&factoring004_amount=' + encodeURIComponent($('#factoring004_amount').val()) + '&order_status_id='
                 ]]>
             </add>
         </operation>
@@ -164,6 +166,7 @@
             <add position="before" action="insert" offset="2">
                 <![CDATA[
                     if (json.otp) {
+                      $('#factoring004-group-amount').prop('hidden', !json.return);
                       $('#modal-factoring004-otp').modal({
                           backdrop: 'static',
                       });
@@ -199,6 +202,12 @@
                                             <input type="text" id="factoring004_otp" name="factoring004_otp" class="form-control" placeholder="Enter OTP code" minlength="4" maxlength="4" required>
                                         </div>
 
+                                        <div id="factoring004-group-amount" class="form-group" hidden>
+                                            <label for="factoring004_amount">Amount</label>
+                                            <input type="number" id="factoring004_amount" name="factoring004_amount" class="form-control" placeholder="Enter return amount" min="0">
+                                            <span class="help-block">Leave this field empty if you want to full return the order</span>
+                                        </div>
+
                                         <div class="form-group">
                                             <button id="btn-factoring004-otp" class="btn btn-primary">Check</button>
                                         </div>
@@ -210,7 +219,10 @@
                     <script>
                         $('#modal-factoring004-otp')
                             .on('shown.bs.modal', () => $('#factoring004_otp').focus())
-                            .on('hidden.bs.modal', () => $('#factoring004_otp').val(''))
+                            .on('hidden.bs.modal', () => {
+                                $('#factoring004_otp').val('');
+                                $('#factoring004_amount').val('');
+                            })
                             .on('submit', e => {
                                 e.preventDefault();
                                 $('#button-history').click();
@@ -293,6 +305,7 @@
             <add position="before" action="insert" offset="3">
                 <![CDATA[
                     if (json.otp) {
+                        $('#factoring004-group-amount').prop('hidden', !json.return);
                         $('#modal-factoring004-otp').modal({
                             backdrop: 'static',
                         });
@@ -328,6 +341,12 @@
                                             <input type="text" id="factoring004_otp" name="factoring004_otp" class="form-control" placeholder="Enter OTP code" minlength="4" maxlength="4" required>
                                         </div>
 
+                                        <div id="factoring004-group-amount" class="form-group" hidden>
+                                            <label for="factoring004_amount">Amount</label>
+                                            <input type="number" id="factoring004_amount" name="factoring004_amount" class="form-control" placeholder="Enter return amount" min="0">
+                                            <span class="help-block">Leave this field empty if you want to full return the order</span>
+                                        </div>
+
                                         <div class="form-group">
                                             <button id="btn-factoring004-otp" class="btn btn-primary">Check</button>
                                         </div>
@@ -339,7 +358,10 @@
                     <script>
                         $('#modal-factoring004-otp')
                             .on('shown.bs.modal', () => $('#factoring004_otp').focus())
-                            .on('hidden.bs.modal', () => $('#factoring004_otp').val(''))
+                            .on('hidden.bs.modal', () => {
+                                $('#factoring004_otp').val('');
+                                $('#factoring004_amount').val('');
+                            })
                             .on('submit', e => {
                                 e.preventDefault();
                                 $('#button-save').click();

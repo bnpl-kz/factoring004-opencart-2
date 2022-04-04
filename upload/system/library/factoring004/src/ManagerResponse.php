@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BnplPartners\Factoring004Payment;
 
-class DeliveryManagerResponse
+class ManagerResponse
 {
     /**
      * @var bool
@@ -26,30 +26,42 @@ class DeliveryManagerResponse
      */
     private $message;
 
-    public function __construct(bool $processed, bool $success, bool $sentOtp, string $message)
+    /**
+     * @var bool
+     */
+    private $return;
+
+    public function __construct(bool $processed, bool $success, bool $sentOtp, string $message, bool $return = false)
     {
         $this->processed = $processed;
         $this->success = $success;
         $this->sentOtp = $sentOtp;
         $this->message = $message;
+        $this->return = $return;
     }
 
     /**
      * @param array<string, mixed> $response
      */
-    public static function createFromArray(array $response): DeliveryManagerResponse
+    public static function createFromArray(array $response): ManagerResponse
     {
         return new self(
             $response['process'],
             $response['success'],
             $response['otp'],
             $response['message'],
+            $response['return'] ?? false,
         );
     }
 
-    public static function createAsUnprocessed(): DeliveryManagerResponse
+    public static function createAsUnprocessed(): ManagerResponse
     {
         return new self(false, true, false, '');
+    }
+
+    public static function createReturnAsUnprocessed(): ManagerResponse
+    {
+        return new self(false, true, false, '', true);
     }
 
     public function isProcessed(): bool
@@ -70,5 +82,10 @@ class DeliveryManagerResponse
     public function getMessage(): string
     {
         return $this->message;
+    }
+
+    public function isReturn(): bool
+    {
+        return $this->return;
     }
 }

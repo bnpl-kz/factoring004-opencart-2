@@ -133,7 +133,7 @@
                                     {% if order_status.order_status_id == payment_factoring004_delivery_order_status_id %}
                                         <option value="{{ order_status.order_status_id }}" selected="selected">{{ order_status.name }}</option>
                                     {% else %}
-                                        <option {% if (order_status.name in ['Неудавшийся','Failed']) %} selected="selected" {% endif %} value="{{ order_status.order_status_id }}">{{ order_status.name }}</option>
+                                        <option {% if (order_status.name in ['Доставлено','Shipped']) %} selected="selected" {% endif %} value="{{ order_status.order_status_id }}">{{ order_status.name }}</option>
                                     {% endif %}
                                 {% endfor %}
                             </select>

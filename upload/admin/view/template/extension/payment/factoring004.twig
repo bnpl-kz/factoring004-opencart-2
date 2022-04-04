@@ -97,6 +97,62 @@
                             {% endif %}
                         </div>
                     </div>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="input-paid-order-status">{{ entry_paid_order_status }}</label>
+                        <div class="col-sm-10">
+                            <select name="payment_factoring004_paid_order_status_id" id="input-paid-order-status" class="form-control">
+                                {% for order_status in order_statuses %}
+                                    {% if order_status.order_status_id == payment_factoring004_paid_order_status_id %}
+                                        <option value="{{ order_status.order_status_id }}" selected="selected">{{ order_status.name }}</option>
+                                    {% else %}
+                                        <option value="{{ order_status.order_status_id }}" {% if (order_status.name in ['В обработке','Processing']) %} selected="selected" {% endif %}>{{ order_status.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="input-unpaid-order-status">{{ entry_unpaid_order_status }}</label>
+                        <div class="col-sm-10">
+                            <select name="payment_factoring004_unpaid_order_status_id" id="input-paid-order-status" class="form-control">
+                                {% for order_status in order_statuses %}
+                                    {% if order_status.order_status_id == payment_factoring004_unpaid_order_status_id %}
+                                        <option value="{{ order_status.order_status_id }}" selected="selected">{{ order_status.name }}</option>
+                                    {% else %}
+                                        <option {% if (order_status.name in ['Неудавшийся','Failed']) %} selected="selected" {% endif %} value="{{ order_status.order_status_id }}">{{ order_status.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="input-delivery-order-status">{{ entry_delivery_order_status }}</label>
+                        <div class="col-sm-10">
+                            <select name="payment_factoring004_delivery_order_status_id" id="input-delivery-order-status" class="form-control">
+                                {% for order_status in order_statuses %}
+                                    {% if order_status.order_status_id == payment_factoring004_delivery_order_status_id %}
+                                        <option value="{{ order_status.order_status_id }}" selected="selected">{{ order_status.name }}</option>
+                                    {% else %}
+                                        <option {% if (order_status.name in ['Неудавшийся','Failed']) %} selected="selected" {% endif %} value="{{ order_status.order_status_id }}">{{ order_status.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="input-return-order-status">{{ entry_return_order_status }}</label>
+                        <div class="col-sm-10">
+                            <select name="payment_factoring004_return_order_status_id" id="input-return-order-status" class="form-control">
+                                {% for order_status in order_statuses %}
+                                    {% if order_status.order_status_id == payment_factoring004_return_order_status_id %}
+                                        <option value="{{ order_status.order_status_id }}" selected="selected">{{ order_status.name }}</option>
+                                    {% else %}
+                                        <option {% if (order_status.name in ['Возврат','Denied']) %} selected="selected" {% endif %} value="{{ order_status.order_status_id }}">{{ order_status.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-delivery">{{ entry_delivery_items }}</label>
                         <div class="col-sm-10">

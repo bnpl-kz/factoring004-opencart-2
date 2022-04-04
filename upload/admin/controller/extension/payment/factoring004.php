@@ -13,6 +13,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
         $this->document->setTitle($this->language->get('heading_title'));
         $this->load->model('setting/setting');
         $this->load->model('extension/payment/factoring004');
+        $this->load->model('localisation/order_status');
 
         if (($this->request->server['REQUEST_METHOD'] === 'POST') && $this->validate()) {
             $this->request->post['payment_factoring004_agreement_file'] = $this->agreementFileUpload($this->request->files['payment_factoring004_agreement_file']);
@@ -157,6 +158,30 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $data['payment_factoring004_partner_website'] = $this->config->get('payment_factoring004_partner_website');
         }
 
+        if (isset($this->request->post['payment_factoring004_paid_order_status_id'])) {
+            $data['payment_factoring004_paid_order_status_id'] = $this->request->post['payment_factoring004_paid_order_status_id'];
+        } else {
+            $data['payment_factoring004_paid_order_status_id'] = $this->config->get('payment_factoring004_paid_order_status_id');
+        }
+
+        if (isset($this->request->post['payment_factoring004_unpaid_order_status_id'])) {
+            $data['payment_factoring004_unpaid_order_status_id'] = $this->request->post['payment_factoring004_unpaid_order_status_id'];
+        } else {
+            $data['payment_factoring004_unpaid_order_status_id'] = $this->config->get('payment_factoring004_unpaid_order_status_id');
+        }
+
+        if (isset($this->request->post['payment_factoring004_delivery_order_status_id'])) {
+            $data['payment_factoring004_delivery_order_status_id'] = $this->request->post['payment_factoring004_delivery_order_status_id'];
+        } else {
+            $data['payment_factoring004_delivery_order_status_id'] = $this->config->get('payment_factoring004_delivery_order_status_id');
+        }
+
+        if (isset($this->request->post['payment_factoring004_return_order_status_id'])) {
+            $data['payment_factoring004_return_order_status_id'] = $this->request->post['payment_factoring004_return_order_status_id'];
+        } else {
+            $data['payment_factoring004_return_order_status_id'] = $this->config->get('payment_factoring004_return_order_status_id');
+        }
+
         if (isset($this->request->post['payment_factoring004_delivery'])) {
             $data['payment_factoring004_delivery'] = explode(',',$this->request->post['payment_factoring004_delivery']);
         } else {
@@ -175,6 +200,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $data['payment_factoring004_status'] = $this->config->get('payment_factoring004_status');
         }
 
+        $data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
         $data['deliveries'] = $this->getDeliveryItems();
         $data['header'] = $this->load->controller('common/header');
         $data['column_left'] = $this->load->controller('common/column_left');

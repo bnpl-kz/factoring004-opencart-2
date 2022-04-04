@@ -25,6 +25,10 @@ $_['entry_partner_website']		 		= 'Partner Website';
 $_['entry_agreement_file']		 		= 'Agreement File';
 $_['entry_delivery_items']		 		= 'Delivery Items';
 $_['entry_status']		                = 'Статус';
+$_['entry_paid_order_status']            = 'Каким статусом помечать оплаченные ордеры';
+$_['entry_unpaid_order_status']          = 'Каким статусом помечать неуспешные ордеры';
+$_['entry_delivery_order_status']                = 'Каким статусом помечать доставку ордера';
+$_['entry_return_order_status']                = 'Каким статусом помечать возврат ордера';
 
 // Help
 $_['help_total_min']		            = 'Минимальная сумма заказа 6000. Ниже этой суммы метод будет недоступен.';

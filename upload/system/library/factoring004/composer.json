@@ -1,10 +1,16 @@
 {
     "require": {
+        "php": ">=7.3",
         "bnpl-partners/factoring004": "dev-legacy"
     },
     "autoload": {
         "psr-4": {
             "BnplPartners\\Factoring004Payment\\": "src"
+        }
+    },
+    "config": {
+        "platform": {
+          "php": "7.3.29"
         }
     }
 }

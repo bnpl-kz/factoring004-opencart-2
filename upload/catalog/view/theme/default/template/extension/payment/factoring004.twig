@@ -2,7 +2,7 @@
     <div class="pull-right">
         {% if factoring004_agreement_filename is not empty %}
             {{ text_checkbox_factoring004_condition }} <a target="_blank" href="../image/{{ factoring004_agreement_filename }}">{{ text_checkbox_factoring004_condition_link }}</a>
-            <input type="checkbox" name="factoring004-agreement-check">
+            <input type="checkbox" name="factoring004-agreement-check">&nbsp;&nbsp;&nbsp;
         {% endif %}
         <input data-url="{{ action }}" data-loading-text="{{ text_loading }}" id="factoring004-submit-button" type="button" value="{{ button_confirm }}" class="btn btn-primary" />
     </div>

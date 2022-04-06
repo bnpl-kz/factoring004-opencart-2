@@ -10,8 +10,8 @@ $_['text_edit']                         = 'Редактирование';
 $_['text_pay']			                = 'Рассрочка 0-0-4';
 $_['text_factoring004']		            = '<img src="view/image/payment/factoring004.png" alt="Factoring004" title="Factoring004" style="border: 1px solid #EEEEEE;" />';
 $_['text_extensions']     				= 'Расширение';
-$_['text_agreement_file']		        = '«Загрузите файл оферты, если вам необходимо его отобразить клиенту»';
-$_['text_button_agreement_file']     	= 'Расширение';
+$_['text_agreement_file']		        = 'Загрузите файл оферты, если вам необходимо его отобразить клиенту';
+$_['text_button_agreement_file']     	= 'Выберите файл';
 
 // Entry
 $_['entry_api_host']                    = 'API Host';

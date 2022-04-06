@@ -24,15 +24,15 @@ class ModelExtensionPaymentFactoring004 extends Model
     {
         $this->load->language('extension/payment/factoring004');
         $price = ceil($total);
-        $file = $this->config->get('payment_factoring004_agreement_file');
+
         if ($price < self::MIN_TOTAL_PRICE || $price > self::MAX_TOTAL_PRICE) {
             return [];
         }
 
         return array(
             'code'       => 'factoring004',
-            'title'      => $this->language->get('text_title'),
-            'terms'      => $file ? "<a target='_blank' href='../image/$file'>Оферта</a>" : '',
+            'title'      => $this->language->get('text_title').'</br>'.$this->language->get('text_factoring004_condition'),
+            'terms'      => '',
             'sort_order' => 0
         );
     }

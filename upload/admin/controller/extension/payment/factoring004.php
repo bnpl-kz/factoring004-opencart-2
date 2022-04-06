@@ -200,6 +200,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $data['payment_factoring004_status'] = $this->config->get('payment_factoring004_status');
         }
 
+        $data['text_loading'] = $this->language->get('text_loading');
         $data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
         $data['deliveries'] = $this->getDeliveryItems();
         $data['header'] = $this->load->controller('common/header');

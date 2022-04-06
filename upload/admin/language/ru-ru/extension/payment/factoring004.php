@@ -10,8 +10,8 @@ $_['text_edit']                         = 'Редактирование';
 $_['text_pay']			                = 'Рассрочка 0-0-4';
 $_['text_factoring004']		            = '<img src="view/image/payment/factoring004.png" alt="Factoring004" title="Factoring004" style="border: 1px solid #EEEEEE;" />';
 $_['text_extensions']     				= 'Расширение';
-$_['text_agreement_file']		        = 'Загрузите файл оферты в случае, если вы будете использовать';
-
+$_['text_agreement_file']		        = '«Загрузите файл оферты, если вам необходимо его отобразить клиенту»';
+$_['text_button_agreement_file']     	= 'Расширение';
 
 // Entry
 $_['entry_api_host']                    = 'API Host';
@@ -22,13 +22,13 @@ $_['entry_partner_code']				= 'Partner Code';
 $_['entry_point_code']				 	= 'Point Code';
 $_['entry_partner_email']	 		    = 'Partner Email';
 $_['entry_partner_website']		 		= 'Partner Website';
-$_['entry_agreement_file']		 		= 'Agreement File';
-$_['entry_delivery_items']		 		= 'Delivery Items';
+$_['entry_agreement_file']		 		= 'Файл оферты';
+$_['entry_delivery_items']		 		= 'Способы доставки';
 $_['entry_status']		                = 'Статус';
-$_['entry_paid_order_status']            = 'Каким статусом помечать оплаченные ордеры';
-$_['entry_unpaid_order_status']          = 'Каким статусом помечать неуспешные ордеры';
-$_['entry_delivery_order_status']                = 'Каким статусом помечать доставку ордера';
-$_['entry_return_order_status']                = 'Каким статусом помечать возврат ордера';
+$_['entry_paid_order_status']           = 'Статус оплаченных заказов';
+$_['entry_unpaid_order_status']         = 'Статус неуспешных заказов';
+$_['entry_delivery_order_status']       = 'Статус доставленных заказов';
+$_['entry_return_order_status']         = 'Статус возвращенных заказов';
 
 // Help
 $_['help_total_min']		            = 'Минимальная сумма заказа 6000. Ниже этой суммы метод будет недоступен.';

@@ -15,7 +15,9 @@ class ControllerExtensionPaymentFactoring004 extends Controller
 
     public function index()
     {
+        $this->load->language('extension/payment/factoring004');
         $data['button_confirm'] = $this->language->get('button_confirm');
+        $data['text_loading'] = $this->language->get('text_loading');
 
         $this->load->model('checkout/order');
 
@@ -27,8 +29,8 @@ class ControllerExtensionPaymentFactoring004 extends Controller
             $this->preapp($this->model_checkout_order->getOrder($this->session->data['order_id']));
             exit;
         }
-
         $data['action'] = $this->url->link('extension/payment/factoring004');
+        $data['factoring004_agreement_filename'] = $this->config->get('payment_factoring004_agreement_file');
 
         return $this->load->view('extension/payment/factoring004', $data);
 

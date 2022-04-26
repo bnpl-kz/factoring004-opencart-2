@@ -17,7 +17,8 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
 
         if (($this->request->server['REQUEST_METHOD'] === 'POST') && $this->validate()) {
             $this->request->post['payment_factoring004_agreement_file'] = $this->agreementFileUpload($this->request->files['payment_factoring004_agreement_file']);
-            $this->request->post['payment_factoring004_delivery'] = implode(',',$this->request->post['payment_factoring004_delivery']);
+            $this->request->post['payment_factoring004_delivery'] = isset($this->request->post['payment_factoring004_delivery']) ?
+                implode(',',$this->request->post['payment_factoring004_delivery']) : '';
             $this->model_setting_setting->editSetting('payment_factoring004', $this->request->post);
             $this->session->data['success'] = $this->language->get('text_success');
             $this->response->redirect($this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment', true));

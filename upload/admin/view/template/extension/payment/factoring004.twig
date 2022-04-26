@@ -168,7 +168,7 @@
                         <div class="col-sm-10">
                             {% if payment_factoring004_agreement_file is not empty %}
                                 <a class="btn btn-default" target="_blank" href="../image/{{ payment_factoring004_agreement_file }}"><i class="fa fa-file-pdf-o"></i></a>
-                                <button data-loading-text="{{ text_loading }}" id="payment-factoring004-agreement-button" type="button" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Удалить"><i class="fa fa-close"></i></button>
+                                <button data-nonce="{{  }}" data-loading-text="{{ text_loading }}" id="payment-factoring004-agreement-button" type="button" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Удалить"><i class="fa fa-close"></i></button>
                             {% else %}
                                 <button type="button" class="btn bg-primary" onclick="document.getElementById('get-agreement-file').click()">{{ text_button_agreement_file }}</button>
                                 <input name="payment_factoring004_agreement_file" type="file" id="get-agreement-file" style="display:none">

@@ -21,7 +21,7 @@ class ReturnManager extends AbstractManager
      */
     public function return(array $order, array $postData): ManagerResponse
     {
-        $amountReturn = (int) $postData['factoring004_amount'] ?? 0;
+        $amountReturn = intval($postData['factoring004_amount'] ?? 0);
         $amountRemaining = $this->getAmountRemaining($order, $amountReturn);
 
         try {

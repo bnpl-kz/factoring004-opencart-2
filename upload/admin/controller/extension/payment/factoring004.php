@@ -100,19 +100,6 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $data['error_point_code'] = '';
         }
 
-        if (isset($this->error['partner_email'])) {
-            $data['error_partner_email'] = $this->error['partner_email'];
-        } else {
-            $data['error_partner_email'] = '';
-        }
-
-        if (isset($this->error['partner_website'])) {
-            $data['error_partner_website'] = $this->error['partner_website'];
-        } else {
-            $data['error_partner_website'] = '';
-        }
-
-
         if (isset($this->request->post['payment_factoring004_api_host'])) {
             $data['payment_factoring004_api_host'] = $this->request->post['payment_factoring004_api_host'];
         } else {

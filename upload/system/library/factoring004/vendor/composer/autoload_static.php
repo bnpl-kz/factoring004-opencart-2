@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitdcef065a8ece7891f62a7bca1bcafc0f
+class ComposerStaticInit8b627d0a8a19563569cb3e80bc509a04
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -17,6 +17,7 @@ class ComposerStaticInitdcef065a8ece7891f62a7bca1bcafc0f
         'P' => 
         array (
             'Psr\\SimpleCache\\' => 16,
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
         ),
@@ -41,6 +42,10 @@ class ComposerStaticInitdcef065a8ece7891f62a7bca1bcafc0f
         'Psr\\SimpleCache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -92,6 +97,8 @@ class ComposerStaticInitdcef065a8ece7891f62a7bca1bcafc0f
         'BnplPartners\\Factoring004\\Auth\\BearerTokenAuth' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Auth/BearerTokenAuth.php',
         'BnplPartners\\Factoring004\\Auth\\NoAuth' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Auth/NoAuth.php',
         'BnplPartners\\Factoring004\\ChangeStatus\\AbstractMerchantOrder' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/ChangeStatus/AbstractMerchantOrder.php',
+        'BnplPartners\\Factoring004\\ChangeStatus\\CancelOrder' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/ChangeStatus/CancelOrder.php',
+        'BnplPartners\\Factoring004\\ChangeStatus\\CancelStatus' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/ChangeStatus/CancelStatus.php',
         'BnplPartners\\Factoring004\\ChangeStatus\\ChangeStatusResource' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/ChangeStatus/ChangeStatusResource.php',
         'BnplPartners\\Factoring004\\ChangeStatus\\ChangeStatusResponse' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/ChangeStatus/ChangeStatusResponse.php',
         'BnplPartners\\Factoring004\\ChangeStatus\\DeliveryOrder' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/ChangeStatus/DeliveryOrder.php',
@@ -243,6 +250,17 @@ class ComposerStaticInitdcef065a8ece7891f62a7bca1bcafc0f
         'Psr\\Http\\Message\\UploadedFileInterface' => __DIR__ . '/..' . '/psr/http-message/src/UploadedFileInterface.php',
         'Psr\\Http\\Message\\UriFactoryInterface' => __DIR__ . '/..' . '/psr/http-factory/src/UriFactoryInterface.php',
         'Psr\\Http\\Message\\UriInterface' => __DIR__ . '/..' . '/psr/http-message/src/UriInterface.php',
+        'Psr\\Log\\AbstractLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/AbstractLogger.php',
+        'Psr\\Log\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/log/Psr/Log/InvalidArgumentException.php',
+        'Psr\\Log\\LogLevel' => __DIR__ . '/..' . '/psr/log/Psr/Log/LogLevel.php',
+        'Psr\\Log\\LoggerAwareInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareInterface.php',
+        'Psr\\Log\\LoggerAwareTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareTrait.php',
+        'Psr\\Log\\LoggerInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerInterface.php',
+        'Psr\\Log\\LoggerTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerTrait.php',
+        'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
+        'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/DummyTest.php',
+        'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'Psr\\Log\\Test\\TestLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/TestLogger.php',
         'Psr\\SimpleCache\\CacheException' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheException.php',
         'Psr\\SimpleCache\\CacheInterface' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheInterface.php',
         'Psr\\SimpleCache\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/simple-cache/src/InvalidArgumentException.php',
@@ -251,9 +269,9 @@ class ComposerStaticInitdcef065a8ece7891f62a7bca1bcafc0f
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitdcef065a8ece7891f62a7bca1bcafc0f::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitdcef065a8ece7891f62a7bca1bcafc0f::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitdcef065a8ece7891f62a7bca1bcafc0f::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit8b627d0a8a19563569cb3e80bc509a04::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit8b627d0a8a19563569cb3e80bc509a04::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit8b627d0a8a19563569cb3e80bc509a04::$classMap;
 
         }, null, ClassLoader::class);
     }

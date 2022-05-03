@@ -171,6 +171,12 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $data['payment_factoring004_return_order_status_id'] = $this->config->get('payment_factoring004_return_order_status_id');
         }
 
+        if (isset($this->request->post['payment_factoring004_cancel_order_status_id'])) {
+            $data['payment_factoring004_cancel_order_status_id'] = $this->request->post['payment_factoring004_cancel_order_status_id'];
+        } else {
+            $data['payment_factoring004_cancel_order_status_id'] = $this->config->get('payment_factoring004_cancel_order_status_id');
+        }
+
         if (isset($this->request->post['payment_factoring004_delivery'])) {
             $data['payment_factoring004_delivery'] = explode(',',$this->request->post['payment_factoring004_delivery']);
         } else {

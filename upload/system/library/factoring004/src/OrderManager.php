@@ -18,15 +18,28 @@ class OrderManager
      */
     private $returnManager;
 
-    public function __construct(DeliveryManager $deliveryManager, ReturnManager $returnManager)
-    {
+    /**
+     * @var \BnplPartners\Factoring004Payment\CancelManager
+     */
+    private $cancelManager;
+
+    public function __construct(
+        DeliveryManager $deliveryManager,
+        ReturnManager $returnManager,
+        CancelManager $cancelManager
+    ) {
         $this->deliveryManager = $deliveryManager;
         $this->returnManager = $returnManager;
+        $this->cancelManager = $cancelManager;
     }
 
     public static function create(Registry $registry): OrderManager
     {
-        return new self(DeliveryManager::create($registry), ReturnManager::create($registry));
+        return new self(
+            DeliveryManager::create($registry),
+            ReturnManager::create($registry),
+            CancelManager::create($registry)
+        );
     }
 
     /**
@@ -49,6 +62,10 @@ class OrderManager
 
         if ($postData['order_status_id'] === $this->returnManager->getOrderStatusId()) {
             return $this->returnManager->return($order, $postData);
+        }
+
+        if ($postData['order_status_id'] === $this->cancelManager->getOrderStatusId()) {
+            return $this->cancelManager->cancel($order);
         }
 
         return ManagerResponse::createAsUnprocessed();

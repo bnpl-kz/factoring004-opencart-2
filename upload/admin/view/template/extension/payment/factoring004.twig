@@ -150,11 +150,14 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-delivery">{{ entry_delivery_items }}</label>
                         <div class="col-sm-10">
-                            <select style="height: 60px !important;" multiple name="payment_factoring004_delivery[]" id="input-delivery" class="form-control">
+                            <div class="checkbox">
                                 {% for delivery in deliveries %}
-                                    <option {% for item in payment_factoring004_delivery %} {% if item == delivery.id %} selected {% endif %}  {% endfor %} value="{{ delivery.id }}">{{ delivery.name }}</option>
+                                    <label style="display:block;">
+                                        <input style="position:absolute;" id="input-delivery" {% for item in payment_factoring004_delivery %} {% if item == delivery.id %} checked {% endif %}  {% endfor %} type="checkbox" name="payment_factoring004_delivery[]" value="{{ delivery.id }}">
+                                        {{ delivery.name }}
+                                    </label>
                                 {% endfor %}
-                            </select>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">

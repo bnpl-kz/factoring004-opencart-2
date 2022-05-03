@@ -8,7 +8,6 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
     private $error = array();
 
     public function index() {
-
         $this->load->language('extension/payment/factoring004');
         $this->document->setTitle($this->language->get('heading_title'));
         $this->load->model('setting/setting');

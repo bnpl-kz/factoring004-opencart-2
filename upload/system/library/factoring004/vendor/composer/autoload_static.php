@@ -49,8 +49,8 @@ class ComposerStaticInit8b627d0a8a19563569cb3e80bc509a04
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -84,6 +84,7 @@ class ComposerStaticInit8b627d0a8a19563569cb3e80bc509a04
 
     public static $classMap = array (
         'BnplPartners\\Factoring004Payment\\AbstractManager' => __DIR__ . '/../..' . '/src/AbstractManager.php',
+        'BnplPartners\\Factoring004Payment\\CancelManager' => __DIR__ . '/../..' . '/src/CancelManager.php',
         'BnplPartners\\Factoring004Payment\\DeliveryManager' => __DIR__ . '/../..' . '/src/DeliveryManager.php',
         'BnplPartners\\Factoring004Payment\\ManagerResponse' => __DIR__ . '/../..' . '/src/ManagerResponse.php',
         'BnplPartners\\Factoring004Payment\\OrderManager' => __DIR__ . '/../..' . '/src/OrderManager.php',

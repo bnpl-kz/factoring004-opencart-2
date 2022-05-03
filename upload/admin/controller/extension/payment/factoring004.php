@@ -253,18 +253,6 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $this->error['point_code'] = $this->language->get('error_point_code');
         }
 
-        if (!$this->request->post['payment_factoring004_partner_email']) {
-            $this->error['partner_email'] = $this->language->get('error_partner_email');
-        }
-
-        if (!$this->request->post['payment_factoring004_partner_email']) {
-            $this->error['partner_email'] = $this->language->get('error_partner_email');
-        }
-
-        if (!$this->request->post['payment_factoring004_partner_website']) {
-            $this->error['partner_website'] = $this->language->get('error_partner_website');
-        }
-
         return !$this->error;
     }
 

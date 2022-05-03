@@ -11,7 +11,8 @@
 <script>
     let button = $('#factoring004-submit-button');
     button.click(function () {
-        if (!$('input[name="factoring004-agreement-check"]').is(':checked')) {
+        let checkbox = $('input[name="factoring004-agreement-check"]');
+        if (checkbox.length && !checkbox.is(':checked')) {
             alert('Вам необходимо согласиться с условиями!');
             return;
         }

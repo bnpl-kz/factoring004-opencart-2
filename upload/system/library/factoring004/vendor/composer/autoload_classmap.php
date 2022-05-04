@@ -8,6 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'BnplPartners\\Factoring004Payment\\AbstractManager' => $baseDir . '/src/AbstractManager.php',
     'BnplPartners\\Factoring004Payment\\CancelManager' => $baseDir . '/src/CancelManager.php',
+    'BnplPartners\\Factoring004Payment\\DebugLogger' => $baseDir . '/src/DebugLogger.php',
+    'BnplPartners\\Factoring004Payment\\DebugLoggerFactory' => $baseDir . '/src/DebugLoggerFactory.php',
     'BnplPartners\\Factoring004Payment\\DeliveryManager' => $baseDir . '/src/DeliveryManager.php',
     'BnplPartners\\Factoring004Payment\\ManagerResponse' => $baseDir . '/src/ManagerResponse.php',
     'BnplPartners\\Factoring004Payment\\OrderManager' => $baseDir . '/src/OrderManager.php',

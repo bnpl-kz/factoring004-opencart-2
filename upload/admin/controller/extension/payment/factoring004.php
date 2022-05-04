@@ -189,6 +189,12 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $data['payment_factoring004_agreement_file'] = $this->config->get('payment_factoring004_agreement_file');
         }
 
+        if (isset($this->request->post['payment_factoring004_debug_mode'])) {
+            $data['payment_factoring004_debug_mode'] = $this->request->post['payment_factoring004_debug_mode'];
+        } else {
+            $data['payment_factoring004_debug_mode'] = $this->config->get('payment_factoring004_debug_mode');
+        }
+
         if (isset($this->request->post['payment_factoring004_status'])) {
             $data['payment_factoring004_status'] = $this->request->post['payment_factoring004_status'];
         } else {

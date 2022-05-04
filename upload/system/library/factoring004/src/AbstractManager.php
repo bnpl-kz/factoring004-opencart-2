@@ -6,6 +6,8 @@ namespace BnplPartners\Factoring004Payment;
 
 use BnplPartners\Factoring004\Api;
 use BnplPartners\Factoring004\Auth\BearerTokenAuth;
+use BnplPartners\Factoring004\Transport\GuzzleTransport;
+use BnplPartners\Factoring004\Transport\TransportInterface;
 use Config;
 use Log;
 use Registry;
@@ -39,6 +41,7 @@ abstract class AbstractManager
         $this->api = Api::create(
             $config->get('payment_factoring004_api_host'),
             new BearerTokenAuth($config->get('payment_factoring004_delivery_token')),
+            $this->createTransport()
         );
         $this->confirmableDeliveries = $this->parseConfirmableDeliveries();
     }
@@ -76,5 +79,14 @@ abstract class AbstractManager
     protected function parseShippingCode(string $shippingCode): string
     {
         return explode('.', $shippingCode, 2)[0];
+    }
+
+    protected function createTransport(): TransportInterface
+    {
+        $factory = new DebugLoggerFactory($this->config);
+        $transport = new GuzzleTransport();
+        $transport->setLogger($factory->createLogger());
+
+        return $transport;
     }
 }

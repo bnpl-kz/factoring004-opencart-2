@@ -85,6 +85,8 @@ class ComposerStaticInit8b627d0a8a19563569cb3e80bc509a04
     public static $classMap = array (
         'BnplPartners\\Factoring004Payment\\AbstractManager' => __DIR__ . '/../..' . '/src/AbstractManager.php',
         'BnplPartners\\Factoring004Payment\\CancelManager' => __DIR__ . '/../..' . '/src/CancelManager.php',
+        'BnplPartners\\Factoring004Payment\\DebugLogger' => __DIR__ . '/../..' . '/src/DebugLogger.php',
+        'BnplPartners\\Factoring004Payment\\DebugLoggerFactory' => __DIR__ . '/../..' . '/src/DebugLoggerFactory.php',
         'BnplPartners\\Factoring004Payment\\DeliveryManager' => __DIR__ . '/../..' . '/src/DeliveryManager.php',
         'BnplPartners\\Factoring004Payment\\ManagerResponse' => __DIR__ . '/../..' . '/src/ManagerResponse.php',
         'BnplPartners\\Factoring004Payment\\OrderManager' => __DIR__ . '/../..' . '/src/OrderManager.php',

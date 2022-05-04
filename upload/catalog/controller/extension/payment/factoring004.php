@@ -45,7 +45,8 @@ class ControllerExtensionPaymentFactoring004 extends Controller
             require_once DIR_SYSTEM . 'library/factoring004/vendor/autoload.php';
             $response = \BnplPartners\Factoring004\Api::create(
                 $this->config->get('payment_factoring004_api_host'),
-                new \BnplPartners\Factoring004\Auth\BearerTokenAuth($this->config->get('payment_factoring004_preapp_token'))
+                new \BnplPartners\Factoring004\Auth\BearerTokenAuth($this->config->get('payment_factoring004_preapp_token')),
+                $this->createTransport()
             )->preApps->preApp(
                 \BnplPartners\Factoring004\PreApp\PreAppMessage::createFromArray([
                     'partnerData' => [
@@ -170,5 +171,14 @@ class ControllerExtensionPaymentFactoring004 extends Controller
         header(sprintf('HTTP/1.1 %d %s', $status, $reasonPhrase));
         header('Content-Type: application/json');
         echo $json;
+    }
+
+    protected function createTransport(): \BnplPartners\Factoring004\Transport\TransportInterface
+    {
+        $factory = new \BnplPartners\Factoring004Payment\DebugLoggerFactory($this->config);
+        $transport = new \BnplPartners\Factoring004\Transport\GuzzleTransport();
+        $transport->setLogger($factory->createLogger());
+
+        return $transport;
     }
 }

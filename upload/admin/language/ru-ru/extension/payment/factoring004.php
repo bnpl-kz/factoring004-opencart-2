@@ -43,8 +43,6 @@ $_['error_delivery_token']              = 'Необходимо указать O
 $_['error_partner_name']                = 'Необходимо указать Partner Name';
 $_['error_partner_code']				= 'Необходимо указать Partner Code';
 $_['error_point_code']				 	= 'Необходимо указать Point Code';
-$_['error_partner_email']	 		    = 'Необходимо указать Partner Email';
-$_['error_partner_website']		 		= 'Необходимо указать Partner Website';
 $_['error_agreement_file']		 		= 'Необходимо загрузить файл политики';
 $_['error_agreement_file_delete']		= 'Неудача!';
 

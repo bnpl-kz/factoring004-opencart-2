@@ -4,7 +4,8 @@
 
 * Создайте резервную копию вашего магазина и базы данных
 * Загрузите [factoring004.ocmod.zip](https://github.com/bnpl-partners/factoring004-opencart.git?raw=true)
-* Перемеименуйте название архива на **factoring004.ocmod**
+* Разархивируйте архив, затем запакуйте папку **upload** и файл **install.xml** в zip архив
+* Название архива должно быть **factoring004.ocmod**
 * Зайдите в панель администратора OpenCart.ocStore (www.yoursite.com/admin/)
 * Выберите _Расширения → Установка расширений_
 * Загрузите модуль через **Загрузить**

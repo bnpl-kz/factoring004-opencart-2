@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bnpl-partners/factoring004.git",
-                "reference": "9f341e81532e8e6e9b534dec71d8e50b6d1ff791"
+                "reference": "ef84211dac7c6d2325cb00265353574c7f42c059"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bnpl-partners/factoring004/zipball/9f341e81532e8e6e9b534dec71d8e50b6d1ff791",
-                "reference": "9f341e81532e8e6e9b534dec71d8e50b6d1ff791",
+                "url": "https://api.github.com/repos/bnpl-partners/factoring004/zipball/ef84211dac7c6d2325cb00265353574c7f42c059",
+                "reference": "ef84211dac7c6d2325cb00265353574c7f42c059",
                 "shasum": ""
             },
             "require": {
@@ -25,7 +25,7 @@
                 "psr/log": "^1.1",
                 "psr/simple-cache": "^1.0"
             },
-            "time": "2022-05-03T07:40:49+00:00",
+            "time": "2022-05-12T10:43:34+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {

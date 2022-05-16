@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '5c01eea76865f94a6440e4c97a5b5ec1ebfb2179',
+        'reference' => NULL,
         'name' => '__root__',
         'dev' => false,
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '5c01eea76865f94a6440e4c97a5b5ec1ebfb2179',
+            'reference' => NULL,
             'dev_requirement' => false,
         ),
         'bnpl-partners/factoring004' => array(
@@ -25,7 +25,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../bnpl-partners/factoring004',
             'aliases' => array(),
-            'reference' => '9f341e81532e8e6e9b534dec71d8e50b6d1ff791',
+            'reference' => 'ef84211dac7c6d2325cb00265353574c7f42c059',
             'dev_requirement' => false,
         ),
         'guzzlehttp/guzzle' => array(

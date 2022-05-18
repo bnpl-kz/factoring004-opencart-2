@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bnpl-partners/factoring004.git",
-                "reference": "9f341e81532e8e6e9b534dec71d8e50b6d1ff791"
+                "reference": "ef84211dac7c6d2325cb00265353574c7f42c059"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bnpl-partners/factoring004/zipball/9f341e81532e8e6e9b534dec71d8e50b6d1ff791",
-                "reference": "9f341e81532e8e6e9b534dec71d8e50b6d1ff791",
+                "url": "https://api.github.com/repos/bnpl-partners/factoring004/zipball/ef84211dac7c6d2325cb00265353574c7f42c059",
+                "reference": "ef84211dac7c6d2325cb00265353574c7f42c059",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
                 "issues": "https://github.com/bnpl-partners/factoring004/issues",
                 "source": "https://github.com/bnpl-partners/factoring004/tree/legacy"
             },
-            "time": "2022-05-03T07:40:49+00:00"
+            "time": "2022-05-12T10:43:34+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -818,5 +818,5 @@
     "platform-overrides": {
         "php": "7.3.29"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }

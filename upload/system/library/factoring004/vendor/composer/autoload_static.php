@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit8b627d0a8a19563569cb3e80bc509a04
+class ComposerStaticInit03aff8b14f24355633c2ef2314fe7b23
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -49,8 +49,8 @@ class ComposerStaticInit8b627d0a8a19563569cb3e80bc509a04
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -83,14 +83,6 @@ class ComposerStaticInit8b627d0a8a19563569cb3e80bc509a04
     );
 
     public static $classMap = array (
-        'BnplPartners\\Factoring004Payment\\AbstractManager' => __DIR__ . '/../..' . '/src/AbstractManager.php',
-        'BnplPartners\\Factoring004Payment\\CancelManager' => __DIR__ . '/../..' . '/src/CancelManager.php',
-        'BnplPartners\\Factoring004Payment\\DebugLogger' => __DIR__ . '/../..' . '/src/DebugLogger.php',
-        'BnplPartners\\Factoring004Payment\\DebugLoggerFactory' => __DIR__ . '/../..' . '/src/DebugLoggerFactory.php',
-        'BnplPartners\\Factoring004Payment\\DeliveryManager' => __DIR__ . '/../..' . '/src/DeliveryManager.php',
-        'BnplPartners\\Factoring004Payment\\ManagerResponse' => __DIR__ . '/../..' . '/src/ManagerResponse.php',
-        'BnplPartners\\Factoring004Payment\\OrderManager' => __DIR__ . '/../..' . '/src/OrderManager.php',
-        'BnplPartners\\Factoring004Payment\\ReturnManager' => __DIR__ . '/../..' . '/src/ReturnManager.php',
         'BnplPartners\\Factoring004\\AbstractResource' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/AbstractResource.php',
         'BnplPartners\\Factoring004\\Api' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/Api.php',
         'BnplPartners\\Factoring004\\ArrayInterface' => __DIR__ . '/..' . '/bnpl-partners/factoring004/src/ArrayInterface.php',
@@ -272,9 +264,9 @@ class ComposerStaticInit8b627d0a8a19563569cb3e80bc509a04
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit8b627d0a8a19563569cb3e80bc509a04::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit8b627d0a8a19563569cb3e80bc509a04::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit8b627d0a8a19563569cb3e80bc509a04::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit03aff8b14f24355633c2ef2314fe7b23::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit03aff8b14f24355633c2ef2314fe7b23::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit03aff8b14f24355633c2ef2314fe7b23::$classMap;
 
         }, null, ClassLoader::class);
     }

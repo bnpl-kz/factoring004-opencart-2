@@ -29,7 +29,7 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-api-host"><? echo $entry_api_host ?></label>
                         <div class="col-sm-10">
-                            <input type="text" value="<? echo $payment_factoring004_api_host ?>" name="payment_factoring004_api_host" placeholder="<? echo $entry_api_host; ?>" id="input-api-host" class="form-control" />
+                            <input type="text" value="<? echo $factoring004_api_host ?>" name="factoring004_api_host" placeholder="<? echo $entry_api_host; ?>" id="input-api-host" class="form-control" />
                             <? if ($error_api_host) { ?>
                             <div class="text-danger"><? echo $error_api_host; ?></div>
                             <? } ?>
@@ -38,7 +38,7 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-preapp-token"><? echo $entry_preapp_token; ?></label>
                         <div class="col-sm-10">
-                            <input type="text" value="<? echo $payment_factoring004_preapp_token; ?>" name="payment_factoring004_preapp_token" placeholder="<? echo $entry_preapp_token; ?>" id="input-preapp-token" class="form-control" />
+                            <input type="text" value="<? echo $factoring004_preapp_token; ?>" name="factoring004_preapp_token" placeholder="<? echo $entry_preapp_token; ?>" id="input-preapp-token" class="form-control" />
                             <? if ($error_preapp_token) { ?>
                             <div class="text-danger" ><? echo $error_preapp_token; ?></div>
                             <? } ?>
@@ -47,7 +47,7 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-delivery-token" ><? echo $entry_delivery_token; ?></label>
                         <div class="col-sm-10">
-                            <input type="text" value="<? echo $payment_factoring004_delivery_token; ?>" name="payment_factoring004_delivery_token" placeholder="<? echo $entry_delivery_token; ?>" id="input-delivery-token" class="form-control" />
+                            <input type="text" value="<? echo $factoring004_delivery_token; ?>" name="factoring004_delivery_token" placeholder="<? echo $entry_delivery_token; ?>" id="input-delivery-token" class="form-control" />
                             <? if ($error_delivery_token) { ?>
                             <div class="text-danger" ><? echo $error_delivery_token; ?></div>
                             <? } ?>
@@ -56,7 +56,7 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-partner-name"><? echo $entry_partner_name; ?></label>
                         <div class="col-sm-10">
-                            <input type="text" value="<? echo $payment_factoring004_partner_name; ?>" name="payment_factoring004_partner_name" placeholder="<? echo $entry_partner_name; ?>" id="input-partner-name" class="form-control" />
+                            <input type="text" value="<? echo $factoring004_partner_name; ?>" name="factoring004_partner_name" placeholder="<? echo $entry_partner_name; ?>" id="input-partner-name" class="form-control" />
                             <? if ($error_partner_name) { ?>
                             <div class="text-danger" ><? echo $error_partner_name; ?></div>
                             <? } ?>
@@ -65,7 +65,7 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-partner-code" ><? echo $entry_partner_code; ?></label>
                         <div class="col-sm-10">
-                            <input type="text" value="<? echo $payment_factoring004_partner_code; ?>" name="payment_factoring004_partner_code" placeholder="<? echo $entry_partner_code; ?>" id="input-partner-code" class="form-control" />
+                            <input type="text" value="<? echo $factoring004_partner_code; ?>" name="factoring004_partner_code" placeholder="<? echo $entry_partner_code; ?>" id="input-partner-code" class="form-control" />
                             <? if ($error_partner_code) { ?>
                             <div class="text-danger" ><? echo $error_partner_code; ?></div>
                             <? } ?>
@@ -74,7 +74,7 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-point-code"><? echo $entry_point_code; ?></label>
                         <div class="col-sm-10">
-                            <input type="text" value="<? echo $payment_factoring004_point_code; ?>" name="payment_factoring004_point_code" placeholder="<? echo $entry_point_code; ?>" id="input-point-code" class="form-control" />
+                            <input type="text" value="<? echo $factoring004_point_code; ?>" name="factoring004_point_code" placeholder="<? echo $entry_point_code; ?>" id="input-point-code" class="form-control" />
                             <? if ($error_point_code) { ?>
                             <div class="text-danger" ><? echo $error_point_code; ?></div>
                             <? } ?>
@@ -83,21 +83,21 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-partner-email" ><? echo $entry_partner_email; ?></label>
                         <div class="col-sm-10">
-                            <input type="text" value="<? echo $payment_factoring004_partner_email; ?>" name="payment_factoring004_partner_email" placeholder="<? echo $entry_partner_email; ?>" id="input-partner-email" class="form-control" />
+                            <input type="text" value="<? echo $factoring004_partner_email; ?>" name="factoring004_partner_email" placeholder="<? echo $entry_partner_email; ?>" id="input-partner-email" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-partner-website" ><? echo $entry_partner_website; ?></label>
                         <div class="col-sm-10">
-                            <input type="text" value="<? echo $payment_factoring004_partner_website; ?>" name="payment_factoring004_partner_website" placeholder="<? echo $entry_partner_website; ?>" id="input-partner-website" class="form-control" />
+                            <input type="text" value="<? echo $factoring004_partner_website; ?>" name="factoring004_partner_website" placeholder="<? echo $entry_partner_website; ?>" id="input-partner-website" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-paid-order-status" ><? echo $entry_paid_order_status; ?></label>
                         <div class="col-sm-10">
-                            <select name="payment_factoring004_paid_order_status_id" id="input-paid-order-status" class="form-control">
+                            <select name="factoring004_paid_order_status_id" id="input-paid-order-status" class="form-control">
                                 <? foreach ($order_statuses as $order_status) { ?>
-                                <? if ($order_status['order_status_id'] == $payment_factoring004_paid_order_status_id) { ?>
+                                <? if ($order_status['order_status_id'] == $factoring004_paid_order_status_id) { ?>
                                 <option value="<? echo $order_status['order_status_id']; ?>" selected="selected" ><? echo $order_status['name']; ?></option>
                                 <? } else { ?>
                                 <option value="<? echo $order_status['order_status_id']; ?>" <? if ($order_status['name'] == 'В обработке' || $order_status['name'] == 'Processing') { ?> selected="selected" <? } ?> ><? echo $order_status['name']; ?></option>
@@ -109,9 +109,9 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-unpaid-order-status"><? echo $entry_unpaid_order_status; ?></label>
                         <div class="col-sm-10">
-                            <select name="payment_factoring004_unpaid_order_status_id" id="input-paid-order-status" class="form-control">
+                            <select name="factoring004_unpaid_order_status_id" id="input-paid-order-status" class="form-control">
                                 <? foreach($order_statuses as $order_status) { ?>
-                                <? if ($order_status['order_status_id'] == $payment_factoring004_unpaid_order_status_id) { ?>
+                                <? if ($order_status['order_status_id'] == $factoring004_unpaid_order_status_id) { ?>
                                 <option value="<? echo $order_status['order_status_id']; ?>" selected="selected" ><? echo $order_status['name']; ?></option>
                                 <? } else { ?>
                                 <option <? if (in_array($order_status['name'],  ['Неудавшийся', 'Failed'])) { ?> selected="selected" <? } ?> value="<? echo $order_status['order_status_id']; ?>" ><? echo $order_status['name']; ?></option>
@@ -123,9 +123,9 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-delivery-order-status" ><? echo $entry_delivery_order_status; ?></label>
                         <div class="col-sm-10">
-                            <select name="payment_factoring004_delivery_order_status_id" id="input-delivery-order-status" class="form-control">
+                            <select name="factoring004_delivery_order_status_id" id="input-delivery-order-status" class="form-control">
                                 <? foreach ($order_statuses as $order_status) { ?>
-                                <? if ($order_status['order_status_id'] == $payment_factoring004_delivery_order_status_id) { ?>
+                                <? if ($order_status['order_status_id'] == $factoring004_delivery_order_status_id) { ?>
                                 <option value=<? echo $order_status['order_status_id']; ?>" selected="selected" ><? echo $order_status['name']; ?></option>
                                 <? } else { ?>
                                 <option <? if (in_array($order_status['name'], ['Доставлено','Shipped'])) { ?> selected="selected" <? } ?> value="<? echo $order_status['order_status_id']; ?>" ><? echo $order_status['name']; ?></option>
@@ -137,9 +137,9 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-return-order-status"><? echo $entry_return_order_status; ?></label>
                         <div class="col-sm-10">
-                            <select name="payment_factoring004_return_order_status_id" id="input-return-order-status" class="form-control">
+                            <select name="factoring004_return_order_status_id" id="input-return-order-status" class="form-control">
                                 <? foreach ($order_statuses as $order_status) { ?>
-                                <? if ($order_status['order_status_id'] == $payment_factoring004_return_order_status_id) { ?>
+                                <? if ($order_status['order_status_id'] == $factoring004_return_order_status_id) { ?>
                                 <option value="<? echo $order_status['order_status_id']; ?>" selected="selected" ><? echo $order_status['name']; ?></option>
                                 <? } else { ?>
                                 <option <? if (in_array($order_status['name'], ['Возврат','Denied'])) { ?> selected="selected" <? } ?> value="<? echo $order_status['order_status_id']; ?>" ><? echo $order_status['name']; ?></option>
@@ -151,9 +151,9 @@
                     <div class="form-group required">
                         <label class="col-sm-2 control-label" for="input-cancel-order-status" ><? echo $entry_cancel_order_status; ?></label>
                         <div class="col-sm-10">
-                            <select name="payment_factoring004_cancel_order_status_id" id="input-cancel-order-status" class="form-control">
+                            <select name="factoring004_cancel_order_status_id" id="input-cancel-order-status" class="form-control">
                                 <? foreach ($order_statuses as $order_status) { ?>
-                                <? if ($order_status['order_status_id'] == $payment_factoring004_cancel_order_status_id) { ?>
+                                <? if ($order_status['order_status_id'] == $factoring004_cancel_order_status_id) { ?>
                                 <option value="<? echo $order_status['order_status_id']; ?>" selected="selected" ><? echo $order_status['name']; ?></option>
                                 <? } else { ?>
                                 <option <? if (in_array($order_status['name'], ['Отменено','Canceled'])) { ?> selected="selected" <? } ?> value="<? echo $order_status['order_status_id']; ?>" ><? echo $order_status['name']; ?></option>
@@ -168,7 +168,7 @@
                             <div class="checkbox">
                                 <? foreach ($deliveries as $delivery) { ?>
                                 <label style="display:block;">
-                                    <input style="position:absolute;" id="input-delivery" <? foreach ($payment_factoring004_delivery as $item) { ?> <? if ($item == $delivery['id']) { ?> checked <? } ?>  <? } ?> type="checkbox" name="payment_factoring004_delivery[]" value="<? echo $delivery['id']; ?>">
+                                    <input style="position:absolute;" id="input-delivery" <? foreach ($factoring004_delivery as $item) { ?> <? if ($item == $delivery['id']) { ?> checked <? } ?>  <? } ?> type="checkbox" name="factoring004_delivery[]" value="<? echo $delivery['id']; ?>">
                                     <? echo $delivery['name']; ?>
                                 </label>
                                 <? } ?>
@@ -178,13 +178,13 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-agreement-file" ><? echo $entry_agreement_file; ?></label>
                         <div class="col-sm-10">
-                            <? if (!empty($payment_factoring004_agreement_file)) { ?>
-                            <input type="hidden" name="payment_factoring004_agreement_file" value="<? echo $payment_factoring004_agreement_file; ?>">
-                            <a class="btn btn-default" target="_blank" href="../image/<? echo $payment_factoring004_agreement_file; ?>"><i class="fa fa-file-pdf-o"></i></a>
+                            <? if (!empty($factoring004_agreement_file)) { ?>
+                            <input type="hidden" name="factoring004_agreement_file" value="<? echo $factoring004_agreement_file; ?>">
+                            <a class="btn btn-default" target="_blank" href="../image/<? echo $factoring004_agreement_file; ?>"><i class="fa fa-file-pdf-o"></i></a>
                             <button data-loading-text="<? echo $text_loading; ?>" id="payment-factoring004-agreement-button" type="button" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Удалить"><i class="fa fa-close"></i></button>
                             <? } else { ?>
                             <button type="button" class="btn bg-primary" onclick="document.getElementById('get-agreement-file').click()" ><? echo $text_button_agreement_file; ?></button>
-                            <input name="payment_factoring004_agreement_file" type="file" id="get-agreement-file" style="display:none">
+                            <input name="factoring004_agreement_file" type="file" id="get-agreement-file" style="display:none">
                             <br><small id="input-agreement-file-help" class="form-text text-muted"<? echo $text_agreement_file; ?></small>
                             <? } ?>
                         </div>
@@ -193,10 +193,10 @@
                         <div class="col-sm-10 col-sm-offset-2">
                             <div class="checkbox">
                                 <label>
-                                    <? if ($payment_factoring004_debug_mode) { ?>
-                                    <input type="checkbox" name="payment_factoring004_debug_mode" checked>
+                                    <? if ($factoring004_debug_mode) { ?>
+                                    <input type="checkbox" name="factoring004_debug_mode" checked>
                                     <? } else { ?>
-                                    <input type="checkbox" name="payment_factoring004_debug_mode">
+                                    <input type="checkbox" name="factoring004_debug_mode">
                                     <? } ?>
                                     <? echo $entry_debug_mode; ?>
                                 </label>
@@ -206,8 +206,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-status" ><? echo $entry_status; ?></label>
                         <div class="col-sm-10">
-                            <select name="payment_factoring004_status" id="input-status" class="form-control">
-                                <? if ($payment_factoring004_status) { ?>
+                            <select name="factoring004_status" id="input-status" class="form-control">
+                                <? if ($factoring004_status) { ?>
                                 <option value="1" selected="selected" ><? echo $text_enabled; ?></option>
                                 <option value="0" ><? echo $text_disabled; ?></option>
                                 <? } else { ?>

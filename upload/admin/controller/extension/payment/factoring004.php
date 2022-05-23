@@ -2,7 +2,7 @@
 
 /**
  * @property-read \Loader $load
- * @property-read \ModelExtensionPaymentFactoring004 $model_extension_payment_factoring004
+ * @property-read \ModelExtensionPaymentFactoring004 $model_extension_factoring004
  */
 class ControllerExtensionPaymentFactoring004 extends Controller {
     private $error = array();
@@ -15,12 +15,12 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
         $this->load->model('localisation/order_status');
 
         if (($this->request->server['REQUEST_METHOD'] === 'POST') && $this->validate()) {
-            $this->request->post['payment_factoring004_agreement_file'] = isset($this->request->files['payment_factoring004_agreement_file']) ?
-                $this->agreementFileUpload($this->request->files['payment_factoring004_agreement_file'])
-                : $this->request->post['payment_factoring004_agreement_file'];
-            $this->request->post['payment_factoring004_delivery'] = isset($this->request->post['payment_factoring004_delivery']) ?
-                implode(',',$this->request->post['payment_factoring004_delivery']) : '';
-            $this->model_setting_setting->editSetting('payment_factoring004', $this->request->post);
+            $this->request->post['factoring004_agreement_file'] = isset($this->request->files['factoring004_agreement_file']) ?
+                $this->agreementFileUpload($this->request->files['factoring004_agreement_file'])
+                : $this->request->post['factoring004_agreement_file'];
+            $this->request->post['factoring004_delivery'] = isset($this->request->post['factoring004_delivery']) ?
+                implode(',',$this->request->post['factoring004_delivery']) : '';
+            $this->model_setting_setting->editSetting('factoring004', $this->request->post);
             $this->session->data['success'] = $this->language->get('text_success');
             $this->response->redirect($this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=payment', true));
         }
@@ -29,7 +29,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             if (!$this->agreementFileDelete($this->request->get['filename'])) {
                 echo json_encode(['success'=>false,'message'=>$this->language->get('error_agreement_file_delete')]);
             } else {
-                $this->model_setting_setting->editSettingValue('payment_factoring004', 'payment_factoring004_agreement_file');
+                $this->model_setting_setting->editSettingValue('factoring004', 'factoring004_agreement_file');
                 echo json_encode(['success'=>true,'message'=>$this->language->get('success_agreement_file_delete')]);
             }
             return;
@@ -99,106 +99,106 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $data['error_point_code'] = '';
         }
 
-        if (isset($this->request->post['payment_factoring004_api_host'])) {
-            $data['payment_factoring004_api_host'] = $this->request->post['payment_factoring004_api_host'];
+        if (isset($this->request->post['factoring004_api_host'])) {
+            $data['factoring004_api_host'] = $this->request->post['factoring004_api_host'];
         } else {
-            $data['payment_factoring004_api_host'] = $this->config->get('payment_factoring004_api_host');
+            $data['factoring004_api_host'] = $this->config->get('factoring004_api_host');
         }
 
-        if (isset($this->request->post['payment_factoring004_preapp_token'])) {
-            $data['payment_factoring004_preapp_token'] = $this->request->post['payment_factoring004_preapp_token'];
+        if (isset($this->request->post['factoring004_preapp_token'])) {
+            $data['factoring004_preapp_token'] = $this->request->post['factoring004_preapp_token'];
         } else {
-            $data['payment_factoring004_preapp_token'] = $this->config->get('payment_factoring004_preapp_token');
+            $data['factoring004_preapp_token'] = $this->config->get('factoring004_preapp_token');
         }
 
-        if (isset($this->request->post['payment_factoring004_delivery_token'])) {
-            $data['payment_factoring004_delivery_token'] = $this->request->post['payment_factoring004_delivery_token'];
+        if (isset($this->request->post['factoring004_delivery_token'])) {
+            $data['factoring004_delivery_token'] = $this->request->post['factoring004_delivery_token'];
         } else {
-            $data['payment_factoring004_delivery_token'] = $this->config->get('payment_factoring004_delivery_token');
+            $data['factoring004_delivery_token'] = $this->config->get('factoring004_delivery_token');
         }
 
-        if (isset($this->request->post['payment_factoring004_partner_name'])) {
-            $data['payment_factoring004_partner_name'] = $this->request->post['payment_factoring004_partner_name'];
+        if (isset($this->request->post['factoring004_partner_name'])) {
+            $data['factoring004_partner_name'] = $this->request->post['factoring004_partner_name'];
         } else {
-            $data['payment_factoring004_partner_name'] = $this->config->get('payment_factoring004_partner_name');
+            $data['factoring004_partner_name'] = $this->config->get('factoring004_partner_name');
         }
 
-        if (isset($this->request->post['payment_factoring004_partner_code'])) {
-            $data['payment_factoring004_partner_code'] = $this->request->post['payment_factoring004_partner_code'];
+        if (isset($this->request->post['factoring004_partner_code'])) {
+            $data['factoring004_partner_code'] = $this->request->post['factoring004_partner_code'];
         } else {
-            $data['payment_factoring004_partner_code'] = $this->config->get('payment_factoring004_partner_code');
+            $data['factoring004_partner_code'] = $this->config->get('factoring004_partner_code');
         }
 
-        if (isset($this->request->post['payment_factoring004_point_code'])) {
-            $data['payment_factoring004_point_code'] = $this->request->post['payment_factoring004_point_code'];
+        if (isset($this->request->post['factoring004_point_code'])) {
+            $data['factoring004_point_code'] = $this->request->post['factoring004_point_code'];
         } else {
-            $data['payment_factoring004_point_code'] = $this->config->get('payment_factoring004_point_code');
+            $data['factoring004_point_code'] = $this->config->get('factoring004_point_code');
         }
 
-        if (isset($this->request->post['payment_factoring004_partner_email'])) {
-            $data['payment_factoring004_partner_email'] = $this->request->post['payment_factoring004_partner_email'];
+        if (isset($this->request->post['factoring004_partner_email'])) {
+            $data['factoring004_partner_email'] = $this->request->post['factoring004_partner_email'];
         } else {
-            $data['payment_factoring004_partner_email'] = $this->config->get('payment_factoring004_partner_email');
+            $data['factoring004_partner_email'] = $this->config->get('factoring004_partner_email');
         }
 
-        if (isset($this->request->post['payment_factoring004_partner_website'])) {
-            $data['payment_factoring004_partner_website'] = $this->request->post['payment_factoring004_partner_website'];
+        if (isset($this->request->post['factoring004_partner_website'])) {
+            $data['factoring004_partner_website'] = $this->request->post['factoring004_partner_website'];
         } else {
-            $data['payment_factoring004_partner_website'] = $this->config->get('payment_factoring004_partner_website');
+            $data['factoring004_partner_website'] = $this->config->get('factoring004_partner_website');
         }
 
-        if (isset($this->request->post['payment_factoring004_paid_order_status_id'])) {
-            $data['payment_factoring004_paid_order_status_id'] = $this->request->post['payment_factoring004_paid_order_status_id'];
+        if (isset($this->request->post['factoring004_paid_order_status_id'])) {
+            $data['factoring004_paid_order_status_id'] = $this->request->post['factoring004_paid_order_status_id'];
         } else {
-            $data['payment_factoring004_paid_order_status_id'] = $this->config->get('payment_factoring004_paid_order_status_id');
+            $data['factoring004_paid_order_status_id'] = $this->config->get('factoring004_paid_order_status_id');
         }
 
-        if (isset($this->request->post['payment_factoring004_unpaid_order_status_id'])) {
-            $data['payment_factoring004_unpaid_order_status_id'] = $this->request->post['payment_factoring004_unpaid_order_status_id'];
+        if (isset($this->request->post['factoring004_unpaid_order_status_id'])) {
+            $data['factoring004_unpaid_order_status_id'] = $this->request->post['factoring004_unpaid_order_status_id'];
         } else {
-            $data['payment_factoring004_unpaid_order_status_id'] = $this->config->get('payment_factoring004_unpaid_order_status_id');
+            $data['factoring004_unpaid_order_status_id'] = $this->config->get('factoring004_unpaid_order_status_id');
         }
 
-        if (isset($this->request->post['payment_factoring004_delivery_order_status_id'])) {
-            $data['payment_factoring004_delivery_order_status_id'] = $this->request->post['payment_factoring004_delivery_order_status_id'];
+        if (isset($this->request->post['factoring004_delivery_order_status_id'])) {
+            $data['factoring004_delivery_order_status_id'] = $this->request->post['factoring004_delivery_order_status_id'];
         } else {
-            $data['payment_factoring004_delivery_order_status_id'] = $this->config->get('payment_factoring004_delivery_order_status_id');
+            $data['factoring004_delivery_order_status_id'] = $this->config->get('factoring004_delivery_order_status_id');
         }
 
-        if (isset($this->request->post['payment_factoring004_return_order_status_id'])) {
-            $data['payment_factoring004_return_order_status_id'] = $this->request->post['payment_factoring004_return_order_status_id'];
+        if (isset($this->request->post['factoring004_return_order_status_id'])) {
+            $data['factoring004_return_order_status_id'] = $this->request->post['factoring004_return_order_status_id'];
         } else {
-            $data['payment_factoring004_return_order_status_id'] = $this->config->get('payment_factoring004_return_order_status_id');
+            $data['factoring004_return_order_status_id'] = $this->config->get('factoring004_return_order_status_id');
         }
 
-        if (isset($this->request->post['payment_factoring004_cancel_order_status_id'])) {
-            $data['payment_factoring004_cancel_order_status_id'] = $this->request->post['payment_factoring004_cancel_order_status_id'];
+        if (isset($this->request->post['factoring004_cancel_order_status_id'])) {
+            $data['factoring004_cancel_order_status_id'] = $this->request->post['factoring004_cancel_order_status_id'];
         } else {
-            $data['payment_factoring004_cancel_order_status_id'] = $this->config->get('payment_factoring004_cancel_order_status_id');
+            $data['factoring004_cancel_order_status_id'] = $this->config->get('factoring004_cancel_order_status_id');
         }
 
-        if (isset($this->request->post['payment_factoring004_delivery'])) {
-            $data['payment_factoring004_delivery'] = explode(',',$this->request->post['payment_factoring004_delivery']);
+        if (isset($this->request->post['factoring004_delivery'])) {
+            $data['factoring004_delivery'] = explode(',',$this->request->post['factoring004_delivery']);
         } else {
-            $data['payment_factoring004_delivery'] = explode(',',$this->config->get('payment_factoring004_delivery'));
+            $data['factoring004_delivery'] = explode(',',$this->config->get('factoring004_delivery'));
         }
 
-        if (isset($this->request->post['payment_factoring004_agreement_file'])) {
-            $data['payment_factoring004_agreement_file'] = $this->request->post['payment_factoring004_agreement_file'];
+        if (isset($this->request->post['factoring004_agreement_file'])) {
+            $data['factoring004_agreement_file'] = $this->request->post['factoring004_agreement_file'];
         } else {
-            $data['payment_factoring004_agreement_file'] = $this->config->get('payment_factoring004_agreement_file');
+            $data['factoring004_agreement_file'] = $this->config->get('factoring004_agreement_file');
         }
 
-        if (isset($this->request->post['payment_factoring004_debug_mode'])) {
-            $data['payment_factoring004_debug_mode'] = $this->request->post['payment_factoring004_debug_mode'];
+        if (isset($this->request->post['factoring004_debug_mode'])) {
+            $data['factoring004_debug_mode'] = $this->request->post['factoring004_debug_mode'];
         } else {
-            $data['payment_factoring004_debug_mode'] = $this->config->get('payment_factoring004_debug_mode');
+            $data['factoring004_debug_mode'] = $this->config->get('factoring004_debug_mode');
         }
 
-        if (isset($this->request->post['payment_factoring004_status'])) {
-            $data['payment_factoring004_status'] = $this->request->post['payment_factoring004_status'];
+        if (isset($this->request->post['factoring004_status'])) {
+            $data['factoring004_status'] = $this->request->post['factoring004_status'];
         } else {
-            $data['payment_factoring004_status'] = $this->config->get('payment_factoring004_status');
+            $data['factoring004_status'] = $this->config->get('factoring004_status');
         }
 
         // подключение языка
@@ -245,7 +245,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
     public function install()
     {
         $this->load->model('extension/payment/factoring004');
-        $this->model_extension_payment_factoring004->install();
+        $this->model_extension_factoring004->install();
     }
 
     /**
@@ -254,7 +254,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
     public function uninstall()
     {
         $this->load->model('extension/payment/factoring004');
-        $this->model_extension_payment_factoring004->uninstall();
+        $this->model_extension_factoring004->uninstall();
     }
 
     protected function validate()
@@ -263,27 +263,27 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $this->error['warning'] = $this->language->get('error_permission');
         }
 
-        if (!$this->request->post['payment_factoring004_api_host']) {
+        if (!$this->request->post['factoring004_api_host']) {
             $this->error['api_host'] = $this->language->get('error_api_host');
         }
 
-        if (!$this->request->post['payment_factoring004_preapp_token']) {
+        if (!$this->request->post['factoring004_preapp_token']) {
             $this->error['preapp_token'] = $this->language->get('error_preapp_token');
         }
 
-        if (!$this->request->post['payment_factoring004_delivery_token']) {
+        if (!$this->request->post['factoring004_delivery_token']) {
             $this->error['delivery_token'] = $this->language->get('error_delivery_token');
         }
 
-        if (!$this->request->post['payment_factoring004_partner_name']) {
+        if (!$this->request->post['factoring004_partner_name']) {
             $this->error['partner_name'] = $this->language->get('error_partner_name');
         }
 
-        if (!$this->request->post['payment_factoring004_partner_code']) {
+        if (!$this->request->post['factoring004_partner_code']) {
             $this->error['partner_code'] = $this->language->get('error_partner_code');
         }
 
-        if (!$this->request->post['payment_factoring004_point_code']) {
+        if (!$this->request->post['factoring004_point_code']) {
             $this->error['point_code'] = $this->language->get('error_point_code');
         }
 

@@ -22,7 +22,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
                 implode(',',$this->request->post['payment_factoring004_delivery']) : '';
             $this->model_setting_setting->editSetting('payment_factoring004', $this->request->post);
             $this->session->data['success'] = $this->language->get('text_success');
-            $this->response->redirect($this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment', true));
+            $this->response->redirect($this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=payment', true));
         }
 
         if (($this->request->server['REQUEST_METHOD'] === 'DELETE')) {
@@ -39,23 +39,23 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('text_home'),
-            'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
+            'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
         );
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('text_extensions'),
-            'href' => $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment', true)
+            'href' => $this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=payment', true)
         );
 
         $data['breadcrumbs'][] = array(
             'text' => $this->language->get('heading_title'),
-            'href' => $this->url->link('extension/payment/factoring004', 'user_token=' . $this->session->data['user_token'], true)
+            'href' => $this->url->link('extension/payment/factoring004', 'token=' . $this->session->data['token'], true)
         );
 
-        $data['action'] = $this->url->link('extension/payment/factoring004', 'user_token=' . $this->session->data['user_token'], true);
-        $data['cancel'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment', true);
+        $data['action'] = $this->url->link('extension/payment/factoring004', 'token=' . $this->session->data['token'], true);
+        $data['cancel'] = $this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=payment', true);
 
-        $data['user_token'] = $this->session->data['user_token'];
+        $data['token'] = $this->session->data['token'];
 
         if (isset($this->error['warning'])) {
             $data['error_warning'] = $this->error['warning'];
@@ -201,6 +201,34 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $data['payment_factoring004_status'] = $this->config->get('payment_factoring004_status');
         }
 
+        // подключение языка
+        $data['heading_title'] = $this->language->get('heading_title');
+        $data['text_edit'] = $this->language->get('text_edit');
+        $data['entry_api_host'] = $this->language->get('entry_api_host');
+        $data['entry_preapp_token'] = $this->language->get('entry_preapp_token');
+        $data['entry_delivery_token'] = $this->language->get('entry_delivery_token');
+        $data['entry_partner_name'] = $this->language->get('entry_partner_name');
+        $data['entry_partner_code'] = $this->language->get('entry_partner_code');
+        $data['entry_point_code'] = $this->language->get('entry_point_code');
+        $data['entry_partner_email'] = $this->language->get('entry_partner_email');
+        $data['entry_partner_website'] = $this->language->get('entry_partner_website');
+        $data['entry_paid_order_status'] = $this->language->get('entry_paid_order_status');
+        $data['entry_unpaid_order_status'] = $this->language->get('entry_unpaid_order_status');
+        $data['entry_delivery_order_status'] = $this->language->get('entry_delivery_order_status');
+        $data['entry_return_order_status'] = $this->language->get('entry_return_order_status');
+        $data['entry_cancel_order_status'] = $this->language->get('entry_cancel_order_status');
+        $data['entry_delivery_items'] = $this->language->get('entry_delivery_items');
+        $data['entry_agreement_file'] = $this->language->get('entry_agreement_file');
+        $data['text_loading'] = $this->language->get('text_loading');
+        $data['text_button_agreement_file'] = $this->language->get('text_button_agreement_file');
+        $data['text_agreement_file'] = $this->language->get('text_agreement_file');
+        $data['entry_debug_mode'] = $this->language->get('entry_debug_mode');
+        $data['entry_status'] = $this->language->get('entry_status');
+        $data['text_enabled'] = $this->language->get('text_enabled');
+        $data['text_disabled'] = $this->language->get('text_disabled');
+        $data['button_save'] = $this->language->get('button_save');
+        $data['button_cancel'] = $this->language->get('button_cancel');
+
         $data['text_loading'] = $this->language->get('text_loading');
         $data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
         $data['deliveries'] = $this->getDeliveryItems();
@@ -264,8 +292,8 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
 
     private function getDeliveryItems()
     {
-        $this->load->model('setting/extension');
-        $extensions = $this->model_setting_extension->getInstalled('shipping');
+        $this->load->model('extension/extension');
+        $extensions = $this->model_extension_extension->getInstalled('shipping');
 
         foreach ($extensions as $key => $value) {
             if (!is_file(DIR_APPLICATION . 'controller/extension/shipping/' . $value . '.php') && !is_file(DIR_APPLICATION . 'controller/shipping/' . $value . '.php')) {

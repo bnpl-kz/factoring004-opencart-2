@@ -20,6 +20,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller
         $data['text_loading'] = $this->language->get('text_loading');
 
         $this->load->model('checkout/order');
+        $this->load->model('account/order');
 
         if (!isset($this->session->data['order_id'])) {
             return false;
@@ -31,7 +32,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller
         }
 
         $data['action'] = $this->url->link('extension/payment/factoring004');
-        $data['factoring004_agreement_filename'] = $this->config->get('payment_factoring004_agreement_file');
+        $data['factoring004_agreement_filename'] = $this->config->get('factoring004_agreement_file');
 
         return $this->load->view('extension/payment/factoring004', $data);
     }
@@ -41,20 +42,20 @@ class ControllerExtensionPaymentFactoring004 extends Controller
         header('Content-Type: application/json');
         try {
             $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], 2);
-            $products = $this->model_checkout_order->getOrderProducts($this->session->data['order_id']);
+            $products = $this->model_account_order->getOrderProducts($this->session->data['order_id']);
             require_once DIR_SYSTEM . 'library/factoring004/vendor/autoload.php';
             $response = \BnplPartners\Factoring004\Api::create(
-                $this->config->get('payment_factoring004_api_host'),
-                new \BnplPartners\Factoring004\Auth\BearerTokenAuth($this->config->get('payment_factoring004_preapp_token')),
+                $this->config->get('factoring004_api_host'),
+                new \BnplPartners\Factoring004\Auth\BearerTokenAuth($this->config->get('factoring004_preapp_token')),
                 $this->createTransport()
             )->preApps->preApp(
                 \BnplPartners\Factoring004\PreApp\PreAppMessage::createFromArray([
                     'partnerData' => [
-                        'partnerName' => $this->config->get('payment_factoring004_partner_name'),
-                        'partnerCode' => $this->config->get('payment_factoring004_partner_code'),
-                        'pointCode' => $this->config->get('payment_factoring004_point_code'),
-                        'partnerEmail' => $this->config->get('payment_factoring004_partner_email'),
-                        'partnerWebsite' => $this->config->get('payment_factoring004_partner_website'),
+                        'partnerName' => $this->config->get('factoring004_partner_name'),
+                        'partnerCode' => $this->config->get('factoring004_partner_code'),
+                        'pointCode' => $this->config->get('factoring004_point_code'),
+                        'partnerEmail' => $this->config->get('factoring004_partner_email'),
+                        'partnerWebsite' => $this->config->get('factoring004_partner_website'),
                     ],
                     'billNumber' => (string)$data['order_id'],
                     'billAmount' => (int)ceil($data['total']),
@@ -134,10 +135,10 @@ class ControllerExtensionPaymentFactoring004 extends Controller
 
         if ($request['status'] === 'declined') {
             $response = 'declined';
-            $orderStatusId = $this->config->get('payment_factoring004_unpaid_order_status_id');
+            $orderStatusId = $this->config->get('factoring004_unpaid_order_status_id');
         } elseif ($request['status'] === 'completed') {
             $response = 'ok';
-            $orderStatusId = $this->config->get('payment_factoring004_paid_order_status_id');
+            $orderStatusId = $this->config->get('factoring004_paid_order_status_id');
         } else {
             $this->jsonResponse(['success' => false, 'error' => 'Unexpected status'], 400, 'Bad Request');
             return;
@@ -146,7 +147,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller
         try {
             $this->db->query('BEGIN');
             $this->model_checkout_order->addOrderHistory($order['order_id'], $orderStatusId, $comment);
-            $this->model_extension_payment_factoring004->add($order['order_id'], $request['preappId']);
+            $this->model_extension_factoring004->add($order['order_id'], $request['preappId']);
             $this->db->query('COMMIT');
         } catch (Exception $e) {
             $this->db->query('ROLLBACK');

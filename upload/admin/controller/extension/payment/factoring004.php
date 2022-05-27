@@ -245,7 +245,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
     public function install()
     {
         $this->load->model('extension/payment/factoring004');
-        $this->model_extension_factoring004->install();
+        $this->model_extension_payment_factoring004->install();
     }
 
     /**
@@ -254,7 +254,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
     public function uninstall()
     {
         $this->load->model('extension/payment/factoring004');
-        $this->model_extension_factoring004->uninstall();
+        $this->model_extension_payment_factoring004->uninstall();
     }
 
     protected function validate()

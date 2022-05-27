@@ -93,7 +93,7 @@
         </operation>
     </file>
 
-    <file path="admin/view/template/sale/order_info.twig">
+    <file path="admin/view/template/sale/order_info.tpl">
         <operation>
             <search>
                 <![CDATA[
@@ -108,7 +108,7 @@
         </operation>
     </file>
 
-    <file path="admin/view/template/sale/order_info.twig">
+    <file path="admin/view/template/sale/order_info.tpl">
         <operation>
             <search>
                 <![CDATA[
@@ -123,7 +123,7 @@
         </operation>
     </file>
 
-    <file path="admin/view/template/sale/order_info.twig">
+    <file path="admin/view/template/sale/order_info.tpl">
         <operation>
             <search>
                 <![CDATA[
@@ -138,7 +138,7 @@
         </operation>
     </file>
 
-    <file path="admin/view/template/sale/order_info.twig">
+    <file path="admin/view/template/sale/order_info.tpl">
         <operation>
             <search>
                 <![CDATA[
@@ -156,7 +156,7 @@
         </operation>
     </file>
 
-    <file path="admin/view/template/sale/order_info.twig">
+    <file path="admin/view/template/sale/order_info.tpl">
         <operation>
             <search>
                 <![CDATA[
@@ -179,11 +179,11 @@
         </operation>
     </file>
 
-    <file path="admin/view/template/sale/order_info.twig">
+    <file path="admin/view/template/sale/order_info.tpl">
         <operation>
             <search>
                 <![CDATA[
-                    {{ footer }}
+                    <?php echo $footer; ?>
                 ]]>
             </search>
             <add position="before" action="insert" offset="0">
@@ -234,7 +234,7 @@
         </operation>
     </file>
 
-    <file path="admin/view/template/sale/order_form.twig">
+    <file path="admin/view/template/sale/order_form.tpl">
         <operation>
             <search>
                 <![CDATA[
@@ -247,7 +247,7 @@
         </operation>
     </file>
 
-    <file path="admin/view/template/sale/order_form.twig">
+    <file path="admin/view/template/sale/order_form.tpl">
         <operation>
             <search>
                 <![CDATA[
@@ -262,7 +262,7 @@
         </operation>
     </file>
 
-    <file path="admin/view/template/sale/order_form.twig">
+    <file path="admin/view/template/sale/order_form.tpl">
         <operation>
             <search>
                 <![CDATA[
@@ -277,7 +277,7 @@
         </operation>
     </file>
 
-    <file path="admin/view/template/sale/order_form.twig">
+    <file path="admin/view/template/sale/order_form.tpl">
         <operation>
             <search>
                 <![CDATA[
@@ -295,7 +295,7 @@
         </operation>
     </file>
 
-    <file path="admin/view/template/sale/order_form.twig">
+    <file path="admin/view/template/sale/order_form.tpl">
         <operation>
             <search>
                 <![CDATA[
@@ -318,11 +318,11 @@
         </operation>
     </file>
 
-    <file path="admin/view/template/sale/order_form.twig">
+    <file path="admin/view/template/sale/order_form.tpl">
         <operation>
             <search>
                 <![CDATA[
-                    {{ footer }}
+                    <?php echo $footer; ?>
                 ]]>
             </search>
             <add position="before" action="insert" offset="0">

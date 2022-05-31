@@ -1,10 +1,10 @@
 <div class="buttons">
     <div class="pull-right">
-        <? if (!empty($factoring004_agreement_filename)) { ?>
-        <? echo $text_checkbox_factoring004_condition ?> <a target="_blank" href="../image/<? echo $factoring004_agreement_filename ?>"><? echo $text_checkbox_factoring004_condition_link ?></a>
+        <?php if (!empty($factoring004_agreement_filename)) { ?>
+        <?php =$text_checkbox_factoring004_condition ?> <a target="_blank" href="../image/<?php =$factoring004_agreement_filename ?>"><?php =$text_checkbox_factoring004_condition_link ?></a>
         <input type="checkbox" name="factoring004-agreement-check">&nbsp;&nbsp;&nbsp;
-        <? } ?>
-        <input data-url="<? echo $action ?>" data-loading-text="<? echo $text_loading ?>" id="factoring004-submit-button" type="button" value="<? echo $button_confirm ?>" class="btn btn-primary" />
+        <?php } ?>
+        <input data-url="<?php =$action ?>" data-loading-text="<?php =$text_loading ?>" id="factoring004-submit-button" type="button" value="<?php =$button_confirm ?>" class="btn btn-primary" />
     </div>
 </div>
 

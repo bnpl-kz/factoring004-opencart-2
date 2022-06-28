@@ -18,6 +18,8 @@ class ControllerExtensionPaymentFactoring004 extends Controller
         $this->load->language('extension/payment/factoring004');
         $data['button_confirm'] = $this->language->get('button_confirm');
         $data['text_loading'] = $this->language->get('text_loading');
+        $data['text_checkbox_factoring004_condition'] = $this->language->get('text_checkbox_factoring004_condition');
+        $data['text_checkbox_factoring004_condition_link'] = $this->language->get('text_checkbox_factoring004_condition_link');
 
         $this->load->model('checkout/order');
         $this->load->model('account/order');

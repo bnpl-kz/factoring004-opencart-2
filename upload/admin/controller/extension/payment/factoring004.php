@@ -309,10 +309,10 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             foreach ($files as $file) {
                 $extension = basename($file, '.php');
                 $this->load->language('extension/shipping/' . $extension, 'extension');
-                if ($this->config->get('shipping_' . $extension . '_status')) {
+                if ($this->config->get($extension . '_status')) {
                     $deliveries[] = array(
                         'id'         => $extension,
-                        'name'       => $this->language->get('extension')->get('heading_title')
+                        'name'       => $this->language->get('heading_title')
                     );
                 }
             }

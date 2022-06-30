@@ -1,6 +1,6 @@
 {
     "require": {
-        "php": ">=7.3",
+        "php": ">=7.1",
         "bnpl-partners/factoring004": "dev-legacy"
     },
     "autoload": {
@@ -10,7 +10,7 @@
     },
     "config": {
         "platform": {
-          "php": "7.3.29"
+          "php": "7.1.33"
         }
     }
 }

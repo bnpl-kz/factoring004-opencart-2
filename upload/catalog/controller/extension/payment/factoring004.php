@@ -166,8 +166,11 @@ class ControllerExtensionPaymentFactoring004 extends Controller
     private function jsonResponse(array $data, int $status = 200, string $reasonPhrase = 'OK'): void
     {
         try {
-            $json = json_encode($data, JSON_THROW_ON_ERROR);
-        } catch (JsonException $e) {
+            $json = json_encode($data);
+            if ($json === false) {
+                throw new Exception('JSON encode error');
+            }
+        } catch (Exception $e) {
             throw new InvalidArgumentException('Invalid JSON', 0, $e);
         }
 

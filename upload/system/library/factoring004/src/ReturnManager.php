@@ -57,7 +57,7 @@ class ReturnManager extends AbstractManager
 
     public function getOrderStatusId(): string
     {
-        return $this->config->get('payment_factoring004_return_order_status_id');
+        return $this->config->get('factoring004_return_order_status_id');
     }
 
     /**
@@ -69,7 +69,7 @@ class ReturnManager extends AbstractManager
     {
         $response = $this->api->otp->checkOtpReturn(new CheckOtpReturn(
             $amountReturn,
-            $this->config->get('payment_factoring004_partner_code'),
+            $this->config->get('factoring004_partner_code'),
             $orderId,
             $otp,
         ));
@@ -92,7 +92,7 @@ class ReturnManager extends AbstractManager
     {
         $response = $this->api->otp->sendOtpReturn(new SendOtpReturn(
             $amountRemaining,
-            $this->config->get('payment_factoring004_partner_code'),
+            $this->config->get('factoring004_partner_code'),
             $orderId
         ));
 
@@ -114,7 +114,7 @@ class ReturnManager extends AbstractManager
 
         $changeStatusResponse = $this->api->changeStatus->changeStatusJson([
             new MerchantsOrders(
-                $this->config->get('payment_factoring004_partner_code'),
+                $this->config->get('factoring004_partner_code'),
                 [
                     new ReturnOrder($orderId, $status, $amountRemaining),
                 ],

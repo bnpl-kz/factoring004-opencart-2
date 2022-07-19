@@ -68,7 +68,7 @@ class DeliveryManager extends AbstractManager
 
     public function getOrderStatusId(): string
     {
-        return $this->config->get('payment_factoring004_delivery_order_status_id');
+        return $this->config->get('factoring004_delivery_order_status_id');
     }
 
     /**
@@ -79,7 +79,7 @@ class DeliveryManager extends AbstractManager
     private function checkOtp($orderId, string $otp, int $orderTotal): ManagerResponse
     {
         $response = $this->api->otp->checkOtp(new CheckOtp(
-            $this->config->get('payment_factoring004_partner_code'),
+            $this->config->get('factoring004_partner_code'),
             $orderId,
             $otp,
             $orderTotal
@@ -101,7 +101,7 @@ class DeliveryManager extends AbstractManager
     private function sendOtp($orderId, int $orderTotal): ManagerResponse
     {
         $response = $this->api->otp->sendOtp(new SendOtp(
-            $this->config->get('payment_factoring004_partner_code'),
+            $this->config->get('factoring004_partner_code'),
             $orderId,
             $orderTotal
         ));
@@ -123,7 +123,7 @@ class DeliveryManager extends AbstractManager
     {
         $changeStatusResponse = $this->api->changeStatus->changeStatusJson([
             new MerchantsOrders(
-                $this->config->get('payment_factoring004_partner_code'),
+                $this->config->get('factoring004_partner_code'),
                 [
                     new DeliveryOrder(
                         $orderId,

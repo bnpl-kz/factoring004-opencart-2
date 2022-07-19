@@ -38,7 +38,7 @@ class DebugLoggerFactory
 
     private function isEnabled(): bool
     {
-        return (bool) $this->config->get('payment_factoring004_debug_mode');
+        return (bool) $this->config->get('factoring004_debug_mode');
     }
 
     private function getLogFilename(): string

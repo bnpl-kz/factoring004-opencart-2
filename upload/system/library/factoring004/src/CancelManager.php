@@ -38,7 +38,7 @@ class CancelManager extends AbstractManager
 
     public function getOrderStatusId(): string
     {
-        return $this->config->get('payment_factoring004_cancel_order_status_id');
+        return $this->config->get('factoring004_cancel_order_status_id');
     }
 
     /**
@@ -50,7 +50,7 @@ class CancelManager extends AbstractManager
     {
         $response = $this->api->changeStatus->changeStatusJson([
             new MerchantsOrders(
-                $this->config->get('payment_factoring004_partner_code'),
+                $this->config->get('factoring004_partner_code'),
                 [
                     new CancelOrder($orderId, CancelStatus::CANCEL()),
                 ],

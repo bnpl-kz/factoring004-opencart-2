@@ -11,7 +11,7 @@ declare(strict_types=1);
  */
 class ControllerExtensionPaymentFactoring004 extends Controller
 {
-    const REQUIRED_FIELDS = ['billNumber', 'status', 'preappId'];
+    const REQUIRED_FIELDS = ['billNumber', 'status', 'preappId', 'signature'];
 
     public function index()
     {
@@ -119,6 +119,16 @@ class ControllerExtensionPaymentFactoring004 extends Controller
                 $this->jsonResponse(['success' => false, 'error' => $field . ' is invalid'], 400, 'Bad Request');
                 return;
             }
+        }
+
+        $secretKey = $this->config->get('factoring004_partner_code');
+        $validator = new \BnplPartners\Factoring004\Signature\PostLinkSignatureValidator($secretKey);
+
+        try {
+            $validator->validateData($request);
+        } catch (\BnplPartners\Factoring004\Exception\InvalidSignatureException $e) {
+            $this->jsonResponse(['success' => false, 'error' => 'Invalid signature'], 400, 'Bad Request');
+            return;
         }
 
         $order = $this->model_checkout_order->getOrder($request['billNumber']);

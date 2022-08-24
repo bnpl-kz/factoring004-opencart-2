@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+require_once DIR_SYSTEM . 'library/factoring004/vendor/autoload.php';
 /**
  * @property-read \Loader $load
  * @property-read \ModelCheckoutOrder $model_checkout_order

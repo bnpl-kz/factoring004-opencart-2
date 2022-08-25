@@ -372,4 +372,90 @@
             </add>
         </operation>
     </file>
+
+    <file path="catalog/view/theme/default/template/checkout/payment_method.tpl">
+        <operation>
+            <search>
+                <![CDATA[
+                    <p><strong><?php echo $text_comments; ?></strong></p>
+                ]]>
+            </search>
+            <add position="before" action="insert">
+                <![CDATA[
+                    <?php if ($factoring004Total != 0): ?>
+                        <div id="factoring004-schedule" class="hidden"></div>
+                        <script>
+                            (function () {
+                                new window.Factoring004.PaymentSchedule({
+                                    elemId: 'factoring004-schedule',
+                                    totalAmount: +'<?=$factoring004Total?>',
+                                }).render();
+                                const toggleSchedule = value => {
+                                    if (value === 'factoring004') {
+                                        $('#factoring004-schedule').removeClass('hidden');
+                                    } else {
+                                        $('#factoring004-schedule').addClass('hidden');
+                                    }
+                                };
+                                $('.radio').on('change', '[type="radio"][name="payment_method"]', e => toggleSchedule(e.target.value));
+                                toggleSchedule($('.radio [type="radio"][name="payment_method"]:checked').val());
+                            })();
+                        </script>
+                    <?php endif ?>
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/checkout/payment_method.php">
+        <operation>
+            <search>
+                <![CDATA[
+                    $this->response->setOutput($this->load->view('checkout/payment_method', $data));
+                ]]>
+            </search>
+            <add position="before" action="insert">
+                <![CDATA[
+                    if (isset($data['payment_methods']['factoring004'])) {
+                        $data['factoring004Total'] = (int) ceil($this->cart->getTotal());
+                    } else {
+                        $data['factoring004Total'] = 0;
+                    }
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/checkout/checkout.php">
+        <operation>
+            <search>
+                <![CDATA[
+                    $data['header']
+                ]]>
+            </search>
+            <add position="before" action="insert">
+                <![CDATA[
+                    $data['factoring004Enabled'] = (bool) $this->config->get('factoring004_status');
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/view/theme/default/template/checkout/checkout.tpl">
+        <operation>
+            <search>
+                <![CDATA[
+                    <?php echo $header; ?>
+                ]]>
+            </search>
+            <add position="before" action="insert">
+                <![CDATA[
+                    <?php if ($factoring004Enabled): ?>
+                        <link rel="stylesheet" href="catalog/view/theme/default/stylesheet/factoring004-schedule.0ebdbe1.css">
+                        <script src="catalog/view/javascript/factoring004-schedule.53c9ed8.js" async></script>
+                    <?php endif ?>
+                ]]>
+            </add>
+        </operation>
+    </file>
 </modification>

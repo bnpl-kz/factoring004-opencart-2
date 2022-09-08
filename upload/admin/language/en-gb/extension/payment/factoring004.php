@@ -24,7 +24,7 @@ $_['entry_point_code']				 	= 'Point Code';
 $_['entry_partner_email']	 		    = 'Partner Email';
 $_['entry_partner_website']		 		= 'Partner Website';
 $_['entry_agreement_file']		 		= 'Agreement File';
-$_['entry_delivery_items']		 		= 'Delivery Items';
+$_['entry_delivery_items']		 		= 'Способы доставки для подтверждения через смс';
 $_['entry_status']		                = 'Статус';
 
 // Help

@@ -23,7 +23,7 @@ $_['entry_point_code']				 	= 'Point Code';
 $_['entry_partner_email']	 		    = 'Partner Email';
 $_['entry_partner_website']		 		= 'Partner Website';
 $_['entry_agreement_file']		 		= 'Файл оферты';
-$_['entry_delivery_items']		 		= 'Способы доставки';
+$_['entry_delivery_items']		 		= 'Способы доставки для подтверждения через смс';
 $_['entry_status']		                = 'Статус';
 $_['entry_paid_order_status']           = 'Статус оплаченных заказов';
 $_['entry_unpaid_order_status']         = 'Статус неуспешных заказов';
@@ -50,3 +50,12 @@ $_['error_agreement_file_delete']		= 'Неудача!';
 
 // Success
 $_['success_agreement_file_delete']		= 'Успех!';
+
+// Return and OTP
+$_['text_return_amount'] = 'Сумма';
+$_['text_return_enter_amount'] = 'Введите сумму возврата';
+$_['text_return_amount_helper'] = 'Оставьте это поле пустым или укажите 0 для полного возврата. Иначе будет частичный возврат.';
+$_['text_return_button'] = 'Возврат';
+$_['text_check_otp_title'] = 'Проверить OTP';
+$_['text_check_otp_enter_otp'] = 'Введите OTP код';
+$_['text_check_otp_button'] = 'Проверить';

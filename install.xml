@@ -194,8 +194,10 @@
             <add position="before" action="insert" offset="0">
                 <![CDATA[
                     if ($('#modal-factoring004-otp').hasClass('in')) {
-                      $('#form-factoring004-otp').before('<div id="factoring004-otp-error" class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-                      return;
+                        if (json['error']) {
+                            $('#form-factoring004-otp').before('<div id="factoring004-otp-error" class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                            return;
+                        }
                     }
                 ]]>
             </add>
@@ -333,8 +335,10 @@
             <add position="before" action="insert" offset="7">
                 <![CDATA[
                     if ($('#modal-factoring004-otp').hasClass('in')) {
-                        $('#form-factoring004-otp').before('<div id="factoring004-otp-error" class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-                        return;
+                        if (json['error']) {
+                            $('#form-factoring004-otp').before('<div id="factoring004-otp-error" class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                            return;
+                        }
                     }
                 ]]>
             </add>

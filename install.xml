@@ -499,7 +499,7 @@
                                 $this->{'model_extension_total_' . $result['code']}->getTotal($total_data);
                             }
                         }
-                        $data['factoring004Total'] = (int) ceil($this->cart->getTotal());
+                        $data['factoring004Total'] = (int) ceil($total);
                     }
                 ]]>
             </add>

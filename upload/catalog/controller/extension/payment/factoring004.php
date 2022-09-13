@@ -40,6 +40,11 @@ class ControllerExtensionPaymentFactoring004 extends Controller
         return $this->load->view('extension/payment/factoring004', $data);
     }
 
+    public function error()
+    {
+        $this->response->setOutput($this->load->view('extension/payment/factoring004_error'));
+    }
+
     private function preapp($data)
     {
         header('Content-Type: application/json');

@@ -29,7 +29,7 @@
                 button.button('reset');
             },
             success: function(response) {
-                if (!response.success) {
+                if (!response.success && response.error) {
                     alert(response.error)
                     return;
                 }

@@ -95,7 +95,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller
         }
         catch (\Exception $e) {
             $this->log->write('Factoring004: ' . $e);
-            $this->jsonResponse(['success' => false, 'error' => 'An error occurred!']);
+            $this->jsonResponse(['success' => false, 'redirectLink' => $this->url->link('extension/payment/factoring004/error')]);
         }
     }
 

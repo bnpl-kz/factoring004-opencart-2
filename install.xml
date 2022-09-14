@@ -457,6 +457,71 @@
         </operation>
     </file>
 
+    <file path="catalog/view/theme/default/template/checkout/payment_method.tpl">
+        <operation>
+            <search>
+                <![CDATA[
+                <?php if ($payment_method['code'] == $code || !$code) { ?>
+                ]]>
+            </search>
+            <add position="before" action="insert">
+                <![CDATA[
+                    <?php $isEnabled = true; ?>
+                    <?php if ($payment_method['code'] == 'factoring004') { ?>
+                        <?php $isEnabled = $payment_method['isAvailable']; ?>
+                    <?php } ?>
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/view/theme/default/template/checkout/payment_method.tpl">
+        <operation>
+            <search>
+                <![CDATA[
+                <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" checked="checked" />
+                ]]>
+            </search>
+            <add position="replace" action="insert">
+                <![CDATA[
+                <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" <?php echo !$isEnabled ? 'disabled="disabled"' : 'checked="checked"'?>/>
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/view/theme/default/template/checkout/payment_method.tpl">
+        <operation>
+            <search>
+                <![CDATA[
+                <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" />
+                ]]>
+            </search>
+            <add position="replace" action="insert">
+                <![CDATA[
+                <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" <?php echo !$isEnabled ? 'disabled="disabled"' : ''?>/>
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/view/theme/default/template/checkout/payment_method.tpl">
+        <operation>
+            <search>
+                <![CDATA[
+                </label>
+                ]]>
+            </search>
+            <add position="before" action="insert">
+                <![CDATA[
+                <?php if ($payment_method['code'] == 'factoring004' && !$isEnabled) { ?>
+                    <p style="color:red"><?php echo $payment_method['availableText']?></p>
+                <?php } ?>
+                ]]>
+            </add>
+        </operation>
+    </file>
+
     <file path="catalog/controller/checkout/payment_method.php">
         <operation>
             <search>

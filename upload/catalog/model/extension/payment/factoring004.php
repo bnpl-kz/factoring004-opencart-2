@@ -24,16 +24,28 @@ class ModelExtensionPaymentFactoring004 extends Model
     {
         $this->load->language('extension/payment/factoring004');
         $price = ceil($total);
+        $isAvailable = false;
+        $availableTextKey = 'factoring004_low_price_text';
+        $needleSum = 0;
 
         if ($price < self::MIN_TOTAL_PRICE || $price > self::MAX_TOTAL_PRICE) {
-            return [];
+            if ($price > self::MAX_TOTAL_PRICE) {
+                $availableTextKey = 'factoring004_high_price_text';
+                $needleSum = $price - self::MAX_TOTAL_PRICE;
+            } else {
+                $needleSum = self::MIN_TOTAL_PRICE - $price;
+            }
+        } else {
+            $isAvailable = true;
         }
 
         return array(
             'code'       => 'factoring004',
             'title'      => $this->language->get('text_title').'</br>'.$this->language->get('text_factoring004_condition'),
             'terms'      => '',
-            'sort_order' => 0
+            'sort_order' => 0,
+            'isAvailable' => $isAvailable,
+            'availableText' => sprintf($this->language->get($availableTextKey), $price, $needleSum)
         );
     }
 

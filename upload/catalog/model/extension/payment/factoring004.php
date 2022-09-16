@@ -28,13 +28,11 @@ class ModelExtensionPaymentFactoring004 extends Model
         $availableTextKey = 'factoring004_low_price_text';
         $needleSum = 0;
 
-        if ($price < self::MIN_TOTAL_PRICE || $price > self::MAX_TOTAL_PRICE) {
-            if ($price > self::MAX_TOTAL_PRICE) {
-                $availableTextKey = 'factoring004_high_price_text';
-                $needleSum = $price - self::MAX_TOTAL_PRICE;
-            } else {
-                $needleSum = self::MIN_TOTAL_PRICE - $price;
-            }
+        if ($price > self::MAX_TOTAL_PRICE) {
+            $availableTextKey = 'factoring004_high_price_text';
+            $needleSum = $price - self::MAX_TOTAL_PRICE;
+        } elseif ($price < self::MIN_TOTAL_PRICE) {
+            $needleSum = self::MIN_TOTAL_PRICE - $price;
         } else {
             $isAvailable = true;
         }

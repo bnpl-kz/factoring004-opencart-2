@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace BnplPartners\Factoring004Payment;
 
 use BnplPartners\Factoring004\ChangeStatus\MerchantsOrders;
@@ -19,9 +17,9 @@ class ReturnManager extends AbstractManager
      * @param array<string, mixed> $order
      * @param array<string, mixed> $postData
      */
-    public function return(array $order, array $postData): ManagerResponse
+    public function makeReturn(array $order, array $postData)
     {
-        $amountReturn = intval($postData['factoring004_amount'] ?? 0);
+        $amountReturn = intval(isset($postData['factoring004_amount']) ? $postData['factoring004_amount'] : 0);
         $amountRemaining = $this->getAmountRemaining($order, $amountReturn);
 
         try {
@@ -55,23 +53,25 @@ class ReturnManager extends AbstractManager
         }
     }
 
-    public function getOrderStatusId(): string
+    public function getOrderStatusId()
     {
         return $this->config->get('factoring004_return_order_status_id');
     }
 
     /**
      * @param int|string $orderId
+     * @param int $amountReturn
+     * @param string $otp
 
      * @throws \BnplPartners\Factoring004\Exception\PackageException
      */
-    private function checkOtp($orderId, string $otp, int $amountReturn = 0): ManagerResponse
+    private function checkOtp($orderId, $otp, $amountReturn = 0)
     {
         $response = $this->api->otp->checkOtpReturn(new CheckOtpReturn(
             $amountReturn,
             $this->config->get('factoring004_partner_code'),
             $orderId,
-            $otp,
+            $otp
         ));
 
         return ManagerResponse::createFromArray([
@@ -85,10 +85,11 @@ class ReturnManager extends AbstractManager
 
     /**
      * @param int|string $orderId
+     * @param int $amountRemaining
 
      * @throws \BnplPartners\Factoring004\Exception\PackageException
      */
-    private function sendOtp($orderId, int $amountRemaining = 0): ManagerResponse
+    private function sendOtp($orderId, $amountRemaining = 0)
     {
         $response = $this->api->otp->sendOtpReturn(new SendOtpReturn(
             $amountRemaining,
@@ -107,8 +108,9 @@ class ReturnManager extends AbstractManager
 
     /**
      * @param int|string $orderId
+     * @param int $amountRemaining
      */
-    private function returnWithoutOtp($orderId, int $amountRemaining = 0): ManagerResponse
+    private function returnWithoutOtp($orderId, $amountRemaining = 0)
     {
         $status = $amountRemaining > 0 ? ReturnStatus::PARTRETURN() : ReturnStatus::RETURN();
 
@@ -117,7 +119,7 @@ class ReturnManager extends AbstractManager
                 $this->config->get('factoring004_partner_code'),
                 [
                     new ReturnOrder($orderId, $status, $amountRemaining),
-                ],
+                ]
             ),
         ]);
 
@@ -127,7 +129,7 @@ class ReturnManager extends AbstractManager
                 $errorResponse->getMessage(),
                 null,
                 null,
-                $errorResponse->getError(),
+                $errorResponse->getError()
             ));
         }
 
@@ -142,8 +144,9 @@ class ReturnManager extends AbstractManager
 
     /**
      * @param array<string, mixed> $order
+     * @param int $amountReturn
      */
-    private function getAmountRemaining(array $order, int $amountReturn = 0): int
+    private function getAmountRemaining(array $order, $amountReturn = 0)
     {
         return ($amountReturn > 0 && $order['total'] > $amountReturn)
             ? (int) ceil($order['total']) - $amountReturn

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace BnplPartners\Factoring004Payment;
 
 class ManagerResponse
@@ -31,7 +29,14 @@ class ManagerResponse
      */
     private $return;
 
-    public function __construct(bool $processed, bool $success, bool $sentOtp, string $message, bool $return = false)
+    /**
+     * @param bool $processed
+     * @param bool $success
+     * @param bool $sentOtp
+     * @param string $message
+     * @param bool $return
+     */
+    public function __construct($processed, $success, $sentOtp, $message, $return = false)
     {
         $this->processed = $processed;
         $this->success = $success;
@@ -43,48 +48,48 @@ class ManagerResponse
     /**
      * @param array<string, mixed> $response
      */
-    public static function createFromArray(array $response): ManagerResponse
+    public static function createFromArray(array $response)
     {
         return new self(
             $response['process'],
             $response['success'],
             $response['otp'],
             $response['message'],
-            $response['return'] ?? false,
+            isset($response['return']) ? $response['return'] : false
         );
     }
 
-    public static function createAsUnprocessed(): ManagerResponse
+    public static function createAsUnprocessed()
     {
         return new self(false, true, false, '');
     }
 
-    public static function createReturnAsUnprocessed(): ManagerResponse
+    public static function createReturnAsUnprocessed()
     {
         return new self(false, true, false, '', true);
     }
 
-    public function isProcessed(): bool
+    public function isProcessed()
     {
         return $this->processed;
     }
 
-    public function isSuccess(): bool
+    public function isSuccess()
     {
         return $this->success;
     }
 
-    public function isSentOtp(): bool
+    public function isSentOtp()
     {
         return $this->sentOtp;
     }
 
-    public function getMessage(): string
+    public function getMessage()
     {
         return $this->message;
     }
 
-    public function isReturn(): bool
+    public function isReturn()
     {
         return $this->return;
     }

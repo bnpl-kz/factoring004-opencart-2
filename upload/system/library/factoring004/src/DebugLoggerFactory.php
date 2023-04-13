@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace BnplPartners\Factoring004Payment;
 
 use Config;
@@ -22,12 +20,12 @@ class DebugLoggerFactory
         $this->config = $config;
     }
 
-    public static function create(Registry $registry): DebugLoggerFactory
+    public static function create(Registry $registry)
     {
         return new static($registry->get('config'));
     }
 
-    public function createLogger(): LoggerInterface
+    public function createLogger()
     {
         if ($this->isEnabled()) {
             return new DebugLogger(new Log($this->getLogFilename()));
@@ -36,12 +34,12 @@ class DebugLoggerFactory
         return new NullLogger();
     }
 
-    private function isEnabled(): bool
+    private function isEnabled()
     {
         return (bool) $this->config->get('factoring004_debug_mode');
     }
 
-    private function getLogFilename(): string
+    private function getLogFilename()
     {
         return 'factoring004-' . date('Y-m-d') . '.log';
     }

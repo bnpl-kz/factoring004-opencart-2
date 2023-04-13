@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace BnplPartners\Factoring004Payment;
 
 use Registry;
@@ -33,7 +31,7 @@ class OrderManager
         $this->cancelManager = $cancelManager;
     }
 
-    public static function create(Registry $registry): OrderManager
+    public static function create(Registry $registry)
     {
         return new self(
             DeliveryManager::create($registry),
@@ -46,7 +44,7 @@ class OrderManager
      * @param array<string, mixed> $order
      * @param array<string, mixed> $postData
      */
-    public function handle(array $order, array $postData): ManagerResponse
+    public function handle(array $order, array $postData)
     {
         if ($order['payment_code'] !== 'factoring004') {
             return ManagerResponse::createAsUnprocessed();
@@ -61,7 +59,7 @@ class OrderManager
         }
 
         if ($postData['order_status_id'] === $this->returnManager->getOrderStatusId()) {
-            return $this->returnManager->return($order, $postData);
+            return $this->returnManager->makeReturn($order, $postData);
         }
 
         if ($postData['order_status_id'] === $this->cancelManager->getOrderStatusId()) {

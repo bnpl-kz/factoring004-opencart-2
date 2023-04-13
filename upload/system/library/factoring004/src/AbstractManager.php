@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace BnplPartners\Factoring004Payment;
 
 use BnplPartners\Factoring004\Api;
@@ -49,17 +47,17 @@ abstract class AbstractManager
     /**
      * @return static
      */
-    public static function create(Registry $registry): AbstractManager
+    public static function create(Registry $registry)
     {
         return new static($registry->get('config'), $registry->get('log'));
     }
 
-    abstract public function getOrderStatusId(): string;
+    abstract public function getOrderStatusId();
 
     /**
      * @return string[]
      */
-    protected function parseConfirmableDeliveries(): array
+    protected function parseConfirmableDeliveries()
     {
         $raw = $this->config->get('factoring004_delivery');
 
@@ -69,19 +67,19 @@ abstract class AbstractManager
     /**
      * @param array<string, mixed> $order
      */
-    protected function isOtpConfirmable(array $order): bool
+    protected function isOtpConfirmable(array $order)
     {
         $shippingCode = $this->parseShippingCode($order['shipping_code']);
 
         return in_array($shippingCode, $this->confirmableDeliveries);
     }
 
-    protected function parseShippingCode(string $shippingCode): string
+    protected function parseShippingCode(string $shippingCode)
     {
         return explode('.', $shippingCode, 2)[0];
     }
 
-    protected function createTransport(): TransportInterface
+    protected function createTransport()
     {
         $factory = new DebugLoggerFactory($this->config);
         $transport = new GuzzleTransport();

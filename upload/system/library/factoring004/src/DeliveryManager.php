@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace BnplPartners\Factoring004Payment;
 
 use BnplPartners\Factoring004\ChangeStatus\DeliveryOrder;
@@ -19,7 +17,7 @@ class DeliveryManager extends AbstractManager
      * @param array<string, mixed> $order
      * @param array<string, mixed> $postData
      */
-    public function delivery(array $order, array $postData): ManagerResponse
+    public function delivery(array $order, array $postData)
     {
         try {
             if (!empty($postData['factoring004_otp'])) {
@@ -66,7 +64,7 @@ class DeliveryManager extends AbstractManager
         }
     }
 
-    public function getOrderStatusId(): string
+    public function getOrderStatusId()
     {
         return $this->config->get('factoring004_delivery_order_status_id');
     }
@@ -76,7 +74,7 @@ class DeliveryManager extends AbstractManager
      *
      * @throws \BnplPartners\Factoring004\Exception\PackageException
      */
-    private function checkOtp($orderId, string $otp, int $orderTotal): ManagerResponse
+    private function checkOtp($orderId, string $otp, int $orderTotal)
     {
         $response = $this->api->otp->checkOtp(new CheckOtp(
             $this->config->get('factoring004_partner_code'),
@@ -98,7 +96,7 @@ class DeliveryManager extends AbstractManager
      *
      * @throws \BnplPartners\Factoring004\Exception\PackageException
      */
-    private function sendOtp($orderId, int $orderTotal): ManagerResponse
+    private function sendOtp($orderId, int $orderTotal)
     {
         $response = $this->api->otp->sendOtp(new SendOtp(
             $this->config->get('factoring004_partner_code'),
@@ -119,7 +117,7 @@ class DeliveryManager extends AbstractManager
      *
      * @throws \BnplPartners\Factoring004\Exception\PackageException
      */
-    private function deliveryWithoutOtp($orderId, int $orderTotal): ManagerResponse
+    private function deliveryWithoutOtp($orderId, int $orderTotal)
     {
         $changeStatusResponse = $this->api->changeStatus->changeStatusJson([
             new MerchantsOrders(
@@ -130,7 +128,7 @@ class DeliveryManager extends AbstractManager
                         DeliveryStatus::DELIVERED(),
                         $orderTotal
                     ),
-                ],
+                ]
             ),
         ]);
 
@@ -140,7 +138,7 @@ class DeliveryManager extends AbstractManager
                 $errorResponse->getMessage(),
                 null,
                 null,
-                $errorResponse->getError(),
+                $errorResponse->getError()
             ));
         }
 

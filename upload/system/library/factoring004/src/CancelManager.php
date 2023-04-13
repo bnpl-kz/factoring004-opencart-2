@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace BnplPartners\Factoring004Payment;
 
 use BnplPartners\Factoring004\ChangeStatus\CancelOrder;
@@ -13,7 +11,7 @@ use Exception;
 
 class CancelManager extends AbstractManager
 {
-    public function cancel(array $order): ManagerResponse
+    public function cancel(array $order)
     {
         try {
             return $this->cancelOrder($order['order_id']);
@@ -36,7 +34,7 @@ class CancelManager extends AbstractManager
         }
     }
 
-    public function getOrderStatusId(): string
+    public function getOrderStatusId()
     {
         return $this->config->get('factoring004_cancel_order_status_id');
     }
@@ -46,14 +44,14 @@ class CancelManager extends AbstractManager
      *
      * @throws \BnplPartners\Factoring004\Exception\PackageException
      */
-    private function cancelOrder($orderId): ManagerResponse
+    private function cancelOrder($orderId)
     {
         $response = $this->api->changeStatus->changeStatusJson([
             new MerchantsOrders(
                 $this->config->get('factoring004_partner_code'),
                 [
                     new CancelOrder($orderId, CancelStatus::CANCEL()),
-                ],
+                ]
             ),
         ]);
 
@@ -63,7 +61,7 @@ class CancelManager extends AbstractManager
                 $errorResponse->getMessage(),
                 null,
                 null,
-                $errorResponse->getError(),
+                $errorResponse->getError()
             ));
         }
 

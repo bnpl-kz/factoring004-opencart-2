@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 require_once DIR_SYSTEM . 'library/factoring004/vendor/autoload.php';
 /**
  * @property-read \Loader $load
@@ -102,7 +100,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller
     /**
      * @throws \Exception
      */
-    public function postLink(): void
+    public function postLink()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Allow: POST');
@@ -113,9 +111,8 @@ class ControllerExtensionPaymentFactoring004 extends Controller
         $this->load->model('checkout/order');
         $this->load->model('extension/payment/factoring004');
 
-        try {
-            $request = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
-        } catch (JsonException $e) {
+        $request = json_decode(file_get_contents('php://input'), true, 512);
+        if ($request === null || json_last_error() !== JSON_ERROR_NONE) {
             $this->jsonResponse(['success' => false, 'error' => 'Input data is invalid'], 400, 'Bad Request');
             return;
         }
@@ -178,8 +175,10 @@ class ControllerExtensionPaymentFactoring004 extends Controller
 
     /**
      * @param array<string, mixed> $data
+     * @param int $status
+     * @param string $reasonPhrase
      */
-    private function jsonResponse(array $data, int $status = 200, string $reasonPhrase = 'OK'): void
+    private function jsonResponse($data, $status = 200, $reasonPhrase = 'OK')
     {
         $json = json_encode($data);
         if (json_last_error() != JSON_ERROR_NONE) {
@@ -191,7 +190,7 @@ class ControllerExtensionPaymentFactoring004 extends Controller
         echo $json;
     }
 
-    protected function createTransport(): \BnplPartners\Factoring004\Transport\TransportInterface
+    protected function createTransport()
     {
         $factory = new \BnplPartners\Factoring004Payment\DebugLoggerFactory($this->config);
         $transport = new \BnplPartners\Factoring004\Transport\GuzzleTransport();

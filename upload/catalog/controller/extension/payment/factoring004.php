@@ -162,7 +162,6 @@ class ControllerExtensionPaymentFactoring004 extends Controller
         try {
             $this->db->query('BEGIN');
             $this->model_checkout_order->addOrderHistory($order['order_id'], $orderStatusId, $comment);
-            $this->model_extension_payment_factoring004->add($order['order_id'], $request['preappId']);
             $this->db->query('COMMIT');
         } catch (Exception $e) {
             $this->db->query('ROLLBACK');

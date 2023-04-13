@@ -32,13 +32,18 @@ abstract class AbstractManager
      */
     protected $confirmableDeliveries;
 
-    public function __construct(Config $config, Log $log)
+    public function __construct(Config $config, Log $log, Cache $cache)
     {
         $this->config = $config;
         $this->log = $log;
+        $apiHost = $config->get('factoring004_api_host');
+        $oauthLogin = $config->get('factoring004_oauth_login');
+        $oauthPassword = $config->get('factoring004_oauth_password');
+        $tokenManager = new \BnplPartners\Factoring004\OAuth\OAuthTokenManager($apiHost . '/users/api/v1', $oauthLogin, $oauthPassword);
+        $tokenManager = new \BnplPartners\Factoring004\OAuth\CacheOAuthTokenManager($tokenManager, new BnplPartners\Factoring004Payment\CacheAdapter($cache), 'bnpl.payment');
         $this->api = Api::create(
-            $config->get('factoring004_api_host'),
-            new BearerTokenAuth($config->get('factoring004_delivery_token')),
+            $apiHost,
+            new BearerTokenAuth($tokenManager->getAccessToken()->getAccess()),
             $this->createTransport()
         );
         $this->confirmableDeliveries = $this->parseConfirmableDeliveries();
@@ -49,7 +54,7 @@ abstract class AbstractManager
      */
     public static function create(Registry $registry)
     {
-        return new static($registry->get('config'), $registry->get('log'));
+        return new static($registry->get('config'), $registry->get('log'), $registry->get('cache'));
     }
 
     abstract public function getOrderStatusId();

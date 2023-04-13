@@ -50,9 +50,14 @@ class ControllerExtensionPaymentFactoring004 extends Controller
             $this->model_checkout_order->addOrderHistory($this->session->data['order_id'], 2);
             $products = $this->model_account_order->getOrderProducts($this->session->data['order_id']);
             require_once DIR_SYSTEM . 'library/factoring004/vendor/autoload.php';
+            $apiHost = $this->config->get('factoring004_api_host');
+            $oauthLogin = $this->config->get('factoring004_oauth_login');
+            $oauthPassword = $this->config->get('factoring004_oauth_password');
+            $tokenManager = new \BnplPartners\Factoring004\OAuth\OAuthTokenManager($apiHost . '/users/api/v1', $oauthLogin, $oauthPassword);
+            $tokenManager = new \BnplPartners\Factoring004\OAuth\CacheOAuthTokenManager($tokenManager, new BnplPartners\Factoring004Payment\CacheAdapter($this->cache), 'bnpl.payment');
             $response = \BnplPartners\Factoring004\Api::create(
-                $this->config->get('factoring004_api_host'),
-                new \BnplPartners\Factoring004\Auth\BearerTokenAuth($this->config->get('factoring004_preapp_token')),
+                $apiHost,
+                new \BnplPartners\Factoring004\Auth\BearerTokenAuth($tokenManager->getAccessToken()->getAccess()),
                 $this->createTransport()
             )->preApps->preApp(
                 \BnplPartners\Factoring004\PreApp\PreAppMessage::createFromArray([

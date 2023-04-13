@@ -15,13 +15,11 @@ $_['text_button_agreement_file']     	= 'Выберите файл';
 
 // Entry
 $_['entry_api_host']                    = 'API Host';
-$_['entry_preapp_token']                = 'OAuth Token bnpl-partners';
-$_['entry_delivery_token']              = 'OAuth Token AccountingService';
+$_['entry_oauth_login']                = 'OAuth Login';
+$_['entry_oauth_password']              = 'OAuth Password';
 $_['entry_partner_name']                = 'Partner Name';
 $_['entry_partner_code']				= 'Partner Code';
 $_['entry_point_code']				 	= 'Point Code';
-$_['entry_partner_email']	 		    = 'Partner Email';
-$_['entry_partner_website']		 		= 'Partner Website';
 $_['entry_agreement_file']		 		= 'Файл оферты';
 $_['entry_delivery_items']		 		= 'Способы доставки для подтверждения через смс';
 $_['entry_status']		                = 'Статус';
@@ -39,8 +37,8 @@ $_['help_total_max']		            = 'Максимальная сумма зак�
 // Error
 $_['error_permission']	                = 'У вас недостаточно прав для внесения изменений!';
 $_['error_api_host']                    = 'Необходимо указать API Host';
-$_['error_preapp_token']                = 'Необходимо указать OAuth Token bnpl-partners';
-$_['error_delivery_token']              = 'Необходимо указать OAuth Token AccountingService';
+$_['error_oauth_login']                = 'Необходимо указать OAuth Login';
+$_['error_oauth_password']              = 'Необходимо указать OAuth Password';
 $_['error_partner_name']                = 'Необходимо указать Partner Name';
 $_['error_partner_code']				= 'Необходимо указать Partner Code';
 $_['error_point_code']				 	= 'Необходимо указать Point Code';

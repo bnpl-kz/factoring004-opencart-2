@@ -69,16 +69,16 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $data['error_api_host'] = '';
         }
 
-        if (isset($this->error['preapp_token'])) {
-            $data['error_preapp_token'] = $this->error['preapp_token'];
+        if (isset($this->error['oauth_login'])) {
+            $data['error_oauth_login'] = $this->error['oauth_login'];
         } else {
-            $data['error_preapp_token'] = '';
+            $data['error_oauth_login'] = '';
         }
 
-        if (isset($this->error['delivery_token'])) {
-            $data['error_delivery_token'] = $this->error['delivery_token'];
+        if (isset($this->error['oauth_password'])) {
+            $data['error_oauth_password'] = $this->error['oauth_password'];
         } else {
-            $data['error_delivery_token'] = '';
+            $data['error_oauth_password'] = '';
         }
 
         if (isset($this->error['partner_name'])) {
@@ -105,16 +105,16 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $data['factoring004_api_host'] = $this->config->get('factoring004_api_host');
         }
 
-        if (isset($this->request->post['factoring004_preapp_token'])) {
-            $data['factoring004_preapp_token'] = $this->request->post['factoring004_preapp_token'];
+        if (isset($this->request->post['factoring004_oauth_login'])) {
+            $data['factoring004_oauth_login'] = $this->request->post['factoring004_oauth_login'];
         } else {
-            $data['factoring004_preapp_token'] = $this->config->get('factoring004_preapp_token');
+            $data['factoring004_oauth_login'] = $this->config->get('factoring004_oauth_login');
         }
 
-        if (isset($this->request->post['factoring004_delivery_token'])) {
-            $data['factoring004_delivery_token'] = $this->request->post['factoring004_delivery_token'];
+        if (isset($this->request->post['factoring004_oauth_password'])) {
+            $data['factoring004_oauth_password'] = $this->request->post['factoring004_oauth_password'];
         } else {
-            $data['factoring004_delivery_token'] = $this->config->get('factoring004_delivery_token');
+            $data['factoring004_oauth_password'] = $this->config->get('factoring004_oauth_password');
         }
 
         if (isset($this->request->post['factoring004_partner_name'])) {
@@ -133,18 +133,6 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $data['factoring004_point_code'] = $this->request->post['factoring004_point_code'];
         } else {
             $data['factoring004_point_code'] = $this->config->get('factoring004_point_code');
-        }
-
-        if (isset($this->request->post['factoring004_partner_email'])) {
-            $data['factoring004_partner_email'] = $this->request->post['factoring004_partner_email'];
-        } else {
-            $data['factoring004_partner_email'] = $this->config->get('factoring004_partner_email');
-        }
-
-        if (isset($this->request->post['factoring004_partner_website'])) {
-            $data['factoring004_partner_website'] = $this->request->post['factoring004_partner_website'];
-        } else {
-            $data['factoring004_partner_website'] = $this->config->get('factoring004_partner_website');
         }
 
         if (isset($this->request->post['factoring004_paid_order_status_id'])) {
@@ -205,13 +193,11 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
         $data['heading_title'] = $this->language->get('heading_title');
         $data['text_edit'] = $this->language->get('text_edit');
         $data['entry_api_host'] = $this->language->get('entry_api_host');
-        $data['entry_preapp_token'] = $this->language->get('entry_preapp_token');
-        $data['entry_delivery_token'] = $this->language->get('entry_delivery_token');
+        $data['entry_oauth_login'] = $this->language->get('entry_oauth_login');
+        $data['entry_oauth_password'] = $this->language->get('entry_oauth_password');
         $data['entry_partner_name'] = $this->language->get('entry_partner_name');
         $data['entry_partner_code'] = $this->language->get('entry_partner_code');
         $data['entry_point_code'] = $this->language->get('entry_point_code');
-        $data['entry_partner_email'] = $this->language->get('entry_partner_email');
-        $data['entry_partner_website'] = $this->language->get('entry_partner_website');
         $data['entry_paid_order_status'] = $this->language->get('entry_paid_order_status');
         $data['entry_unpaid_order_status'] = $this->language->get('entry_unpaid_order_status');
         $data['entry_delivery_order_status'] = $this->language->get('entry_delivery_order_status');
@@ -267,12 +253,12 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $this->error['api_host'] = $this->language->get('error_api_host');
         }
 
-        if (!$this->request->post['factoring004_preapp_token']) {
-            $this->error['preapp_token'] = $this->language->get('error_preapp_token');
+        if (!$this->request->post['factoring004_oauth_login']) {
+            $this->error['oauth_login'] = $this->language->get('error_oauth_login');
         }
 
-        if (!$this->request->post['factoring004_delivery_token']) {
-            $this->error['delivery_token'] = $this->language->get('error_delivery_token');
+        if (!$this->request->post['factoring004_oauth_password']) {
+            $this->error['oauth_password'] = $this->language->get('error_oauth_password');
         }
 
         if (!$this->request->post['factoring004_partner_name']) {

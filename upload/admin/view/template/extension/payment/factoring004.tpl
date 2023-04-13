@@ -36,20 +36,20 @@
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-preapp-token"><?=$entry_preapp_token; ?></label>
+                        <label class="col-sm-2 control-label" for="input-oauth-login"><?=$entry_oauth_login; ?></label>
                         <div class="col-sm-10">
-                            <input type="text" value="<?=$factoring004_preapp_token; ?>" name="factoring004_preapp_token" placeholder="<?=$entry_preapp_token; ?>" id="input-preapp-token" class="form-control" />
-                            <?php if ($error_preapp_token) { ?>
-                            <div class="text-danger" ><?=$error_preapp_token; ?></div>
+                            <input type="text" value="<?=$factoring004_oauth_login; ?>" name="factoring004_oauth_login" placeholder="<?=$entry_oauth_login; ?>" id="input-oauth-login" class="form-control" />
+                            <?php if ($error_oauth_login) { ?>
+                            <div class="text-danger" ><?=$error_oauth_login; ?></div>
                             <?php } ?>
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-delivery-token" ><?=$entry_delivery_token; ?></label>
+                        <label class="col-sm-2 control-label" for="input-oauth-password" ><?=$entry_oauth_password; ?></label>
                         <div class="col-sm-10">
-                            <input type="text" value="<?=$factoring004_delivery_token; ?>" name="factoring004_delivery_token" placeholder="<?=$entry_delivery_token; ?>" id="input-delivery-token" class="form-control" />
-                            <?php if ($error_delivery_token) { ?>
-                            <div class="text-danger" ><?=$error_delivery_token; ?></div>
+                            <input type="text" value="<?=$factoring004_oauth_password; ?>" name="factoring004_oauth_password" placeholder="<?=$entry_oauth_password; ?>" id="input-oauth-password" class="form-control" />
+                            <?php if ($error_oauth_password) { ?>
+                            <div class="text-danger" ><?=$error_oauth_password; ?></div>
                             <?php } ?>
                         </div>
                     </div>
@@ -78,18 +78,6 @@
                             <?php if ($error_point_code) { ?>
                             <div class="text-danger" ><?=$error_point_code; ?></div>
                             <?php } ?>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-partner-email" ><?=$entry_partner_email; ?></label>
-                        <div class="col-sm-10">
-                            <input type="text" value="<?=$factoring004_partner_email; ?>" name="factoring004_partner_email" placeholder="<?=$entry_partner_email; ?>" id="input-partner-email" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-partner-website" ><?=$entry_partner_website; ?></label>
-                        <div class="col-sm-10">
-                            <input type="text" value="<?=$factoring004_partner_website; ?>" name="factoring004_partner_website" placeholder="<?=$entry_partner_website; ?>" id="input-partner-website" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group required">

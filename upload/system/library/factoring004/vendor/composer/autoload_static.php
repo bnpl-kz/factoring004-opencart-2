@@ -109,6 +109,7 @@ class ComposerStaticInitc4c61c0c27b849ef3939d59260fd2c66
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
         'BnplPartners\\Factoring004Payment\\AbstractManager' => __DIR__ . '/../..' . '/src/AbstractManager.php',
         'BnplPartners\\Factoring004Payment\\CancelManager' => __DIR__ . '/../..' . '/src/CancelManager.php',
+        'BnplPartners\\Factoring004Payment\\CacheAdapter' => __DIR__ . '/../..' . '/src/CacheAdapter.php',
         'BnplPartners\\Factoring004Payment\\DebugLogger' => __DIR__ . '/../..' . '/src/DebugLogger.php',
         'BnplPartners\\Factoring004Payment\\DebugLoggerFactory' => __DIR__ . '/../..' . '/src/DebugLoggerFactory.php',
         'BnplPartners\\Factoring004Payment\\DeliveryManager' => __DIR__ . '/../..' . '/src/DeliveryManager.php',

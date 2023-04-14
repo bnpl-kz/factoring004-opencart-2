@@ -123,6 +123,24 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-payment-gateway-type">
+                            <?=$entry_payment_gateway_type ?>
+                        </label>
+                        <div class="col-sm-10">
+                            <select name="factoring004_payment_gateway_type"
+                                    id="input-payment-gateway-type"
+                                    class="form-control">
+                                <option value="redirect" <?=$factoring004_payment_gateway_type == 'redirect' ? 'selected' : '' ?>>
+                                    <?=$text_payment_gateway_type_redirect ?>
+                                </option>
+
+                                <option value="modal" <?=$factoring004_payment_gateway_type == 'modal' ? 'selected' : '' ?>>
+                                    <?=$text_payment_gateway_type_modal ?>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-2 control-label" for="input-status" ><?=$entry_status; ?></label>
                         <div class="col-sm-10">
                             <select name="factoring004_status" id="input-status" class="form-control">

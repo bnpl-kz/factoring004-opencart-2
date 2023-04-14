@@ -10,8 +10,8 @@ $_['text_edit']                         = 'Редактирование';
 $_['text_pay']			                = 'Рассрочка 0-0-4';
 $_['text_factoring004']		            = '<img src="view/image/payment/factoring004.png" alt="Factoring004" title="Factoring004" style="border: 1px solid #EEEEEE;" />';
 $_['text_extensions']     				= 'Расширение';
-$_['text_agreement_file']		        = 'Загрузите файл оферты, если вам необходимо его отобразить клиенту';
-$_['text_button_agreement_file']     	= 'Выберите файл';
+$_['text_payment_gateway_type_redirect'] = 'Перенаправление';
+$_['text_payment_gateway_type_modal'] = 'Модальное окно';
 
 // Entry
 $_['entry_api_host']                    = 'API Host';
@@ -24,6 +24,7 @@ $_['entry_status']		                = 'Статус';
 $_['entry_paid_order_status']           = 'Статус оплаченных заказов';
 $_['entry_unpaid_order_status']         = 'Статус неуспешных заказов';
 $_['entry_debug_mode']                  = 'Включить режим отладки';
+$_['entry_payment_gateway_type']        = 'Вид интерфейса клиентского пути';
 
 // Help
 $_['help_total_min']		            = 'Минимальная сумма заказа 6000. Ниже этой суммы метод будет недоступен.';

@@ -144,6 +144,12 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
             $data['factoring004_status'] = $this->config->get('factoring004_status');
         }
 
+        if (isset($this->request->post['factoring004_payment_gateway_type'])) {
+            $data['factoring004_payment_gateway_type'] = $this->request->post['factoring004_payment_gateway_type'];
+        } else {
+            $data['factoring004_payment_gateway_type'] = $this->config->get('factoring004_payment_gateway_type');
+        }
+
         // подключение языка
         $data['heading_title'] = $this->language->get('heading_title');
         $data['text_edit'] = $this->language->get('text_edit');
@@ -162,6 +168,9 @@ class ControllerExtensionPaymentFactoring004 extends Controller {
         $data['text_disabled'] = $this->language->get('text_disabled');
         $data['button_save'] = $this->language->get('button_save');
         $data['button_cancel'] = $this->language->get('button_cancel');
+        $data['entry_payment_gateway_type'] = $this->language->get('entry_payment_gateway_type');
+        $data['text_payment_gateway_type_redirect'] = $this->language->get('text_payment_gateway_type_redirect');
+        $data['text_payment_gateway_type_modal'] = $this->language->get('text_payment_gateway_type_modal');
 
         $data['text_loading'] = $this->language->get('text_loading');
         $data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();

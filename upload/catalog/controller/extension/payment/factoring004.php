@@ -34,6 +34,14 @@ class ControllerExtensionPaymentFactoring004 extends Controller
 
         $data['action'] = $this->url->link('extension/payment/factoring004');
         $data['factoring004_agreement_filename'] = $this->config->get('factoring004_agreement_file');
+        $data['paymentGatewayType'] = $this->config->get('factoring004_payment_gateway_type');
+
+        if ($data['paymentGatewayType'] === 'modal') {
+            $data['successRedirect'] = $this->url->link('checkout/success');
+            $data['failRedirect'] = $this->url->link('checkout/failure');
+            $data['paymentWidgetLink'] = \BnplPartners\Factoring004Payment\ModalWidgetUrlResolver::create($this->registry)
+                ->resolve();
+        }
 
         return $this->load->view('extension/payment/factoring004', $data);
     }

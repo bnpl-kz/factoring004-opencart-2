@@ -1,19 +1,36 @@
 <div class="buttons">
     <div class="pull-right">
-        <?php if (!empty($factoring004_agreement_filename)) { ?>
-        <?=$text_checkbox_factoring004_condition ?> <a target="_blank" href="../image/<?=$factoring004_agreement_filename ?>"><?=$text_checkbox_factoring004_condition_link ?></a>
-        <input type="checkbox" name="factoring004-agreement-check">&nbsp;&nbsp;&nbsp;
-        <?php } ?>
         <input data-url="<?=$action ?>" data-loading-text="<?=$text_loading ?>" id="factoring004-submit-button" type="button" value="<?=$button_confirm ?>" class="btn btn-primary" />
     </div>
 </div>
 
+<? if ($paymentGatewayType == 'modal'): ?>
+<div id="factoring004-payment-widget"></div>
+<? endif ?>
+
 <script>
     let button = $('#factoring004-submit-button');
+    const paymentGatewayType = '<?=$paymentGatewayType ?>';
+    let paymentModal = null;
+    let redirectLink = null;
+    if (paymentGatewayType === 'modal') {
+        paymentModal = new BnplKzApi.CPO({
+            rootId: 'factoring004-payment-widget',
+            callbacks: {
+                onEnd: () => window.location.replace('<?=$successRedirect ?>'),
+                onError: (err) => {
+                    if (err.code === 'clientError') {
+                        window.location.replace(redirectLink);
+                    }
+                },
+                onRestart: (_redirectLink) => redirectLink = _redirectLink,
+                onDeclined: () => window.location.replace('<?=$failRedirect ?>'),
+            },
+        });
+    }
     button.click(function () {
-        let checkbox = $('input[name="factoring004-agreement-check"]');
-        if (checkbox.length && !checkbox.is(':checked')) {
-            alert('Вам необходимо согласиться с условиями!');
+        if (paymentGatewayType === 'modal' && redirectLink) {
+            paymentModal.render({ redirectLink });
             return;
         }
         let url = button.attr('data-url');
@@ -33,7 +50,12 @@
                     alert(response.error)
                     return;
                 }
-                window.location.replace(response.redirectLink)
+                if (paymentGatewayType === 'redirect') {
+                    window.location.replace(response.redirectLink);
+                    return;
+                }
+                redirectLink = response.redirectLink
+                paymentModal.render({ redirectLink });
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText)

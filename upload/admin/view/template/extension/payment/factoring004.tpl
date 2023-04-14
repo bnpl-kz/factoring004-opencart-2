@@ -108,75 +108,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-delivery-order-status" ><?=$entry_delivery_order_status; ?></label>
-                        <div class="col-sm-10">
-                            <select name="factoring004_delivery_order_status_id" id="input-delivery-order-status" class="form-control">
-                                <?php foreach ($order_statuses as $order_status) { ?>
-                                <?php if ($order_status['order_status_id'] == $factoring004_delivery_order_status_id) { ?>
-                                <option value=<?=$order_status['order_status_id']; ?>" selected="selected" ><?=$order_status['name']; ?></option>
-                                <?php } else { ?>
-                                <option <?php if (in_array($order_status['name'], ['Доставлено','Shipped'])) { ?> selected="selected" <?php } ?> value="<?=$order_status['order_status_id']; ?>" ><?=$order_status['name']; ?></option>
-                                <?php } ?>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-return-order-status"><?=$entry_return_order_status; ?></label>
-                        <div class="col-sm-10">
-                            <select name="factoring004_return_order_status_id" id="input-return-order-status" class="form-control">
-                                <?php foreach ($order_statuses as $order_status) { ?>
-                                <?php if ($order_status['order_status_id'] == $factoring004_return_order_status_id) { ?>
-                                <option value="<?=$order_status['order_status_id']; ?>" selected="selected" ><?=$order_status['name']; ?></option>
-                                <?php } else { ?>
-                                <option <?php if (in_array($order_status['name'], ['Возврат','Denied'])) { ?> selected="selected" <?php } ?> value="<?=$order_status['order_status_id']; ?>" ><?=$order_status['name']; ?></option>
-                                <?php } ?>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group required">
-                        <label class="col-sm-2 control-label" for="input-cancel-order-status" ><?=$entry_cancel_order_status; ?></label>
-                        <div class="col-sm-10">
-                            <select name="factoring004_cancel_order_status_id" id="input-cancel-order-status" class="form-control">
-                                <?php foreach ($order_statuses as $order_status) { ?>
-                                <?php if ($order_status['order_status_id'] == $factoring004_cancel_order_status_id) { ?>
-                                <option value="<?=$order_status['order_status_id']; ?>" selected="selected" ><?=$order_status['name']; ?></option>
-                                <?php } else { ?>
-                                <option <?php if (in_array($order_status['name'], ['Отменено','Canceled'])) { ?> selected="selected" <?php } ?> value="<?=$order_status['order_status_id']; ?>" ><?=$order_status['name']; ?></option>
-                                <?php } ?>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-delivery" ><?=$entry_delivery_items; ?></label>
-                        <div class="col-sm-10">
-                            <div class="checkbox">
-                                <?php foreach ($deliveries as $delivery) { ?>
-                                <label style="display:block;">
-                                    <input style="position:absolute;" id="input-delivery" <?php foreach ($factoring004_delivery as $item) { ?> <?php if ($item == $delivery['id']) { ?> checked <?php } ?>  <?php } ?> type="checkbox" name="factoring004_delivery[]" value="<?=$delivery['id']; ?>">
-                                    <?=$delivery['name']; ?>
-                                </label>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="input-agreement-file" ><?=$entry_agreement_file; ?></label>
-                        <div class="col-sm-10">
-                            <?php if (!empty($factoring004_agreement_file)) { ?>
-                            <input type="hidden" name="factoring004_agreement_file" value="<?=$factoring004_agreement_file; ?>">
-                            <a class="btn btn-default" target="_blank" href="../image/<?=$factoring004_agreement_file; ?>"><i class="fa fa-file-pdf-o"></i></a>
-                            <button data-loading-text="<?=$text_loading; ?>" id="payment-factoring004-agreement-button" type="button" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Удалить"><i class="fa fa-close"></i></button>
-                            <?php } else { ?>
-                            <button type="button" class="btn bg-primary" onclick="document.getElementById('get-agreement-file').click()" ><?=$text_button_agreement_file; ?></button>
-                            <input name="factoring004_agreement_file" type="file" id="get-agreement-file" style="display:none">
-                            <br><small id="input-agreement-file-help" class="form-text text-muted"<?=$text_agreement_file; ?></small>
-                            <?php } ?>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <div class="col-sm-10 col-sm-offset-2">
                             <div class="checkbox">
@@ -210,32 +141,3 @@
         </div>
     </div>
 </div> <?=$footer; ?>
-
-<script>
-    let button = $('#payment-factoring004-agreement-button');
-    button.click(function () {
-        let filename = button.prev().attr('href').split('/').pop();
-        $.ajax({
-            url: window.location.href + '&filename=' + filename,
-            type: 'DELETE',
-            dataType: 'json',
-            beforeSend: function () {
-                button.button('loading');
-            },
-            complete: function () {
-                button.button('reset');
-                location.reload();
-            },
-            success: function(response) {
-                if (response.success) {
-                    alert(response.message)
-                } else {
-                    alert(response.message)
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText)
-            }
-        })
-    })
-</script>

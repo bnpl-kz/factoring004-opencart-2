@@ -20,14 +20,9 @@ $_['entry_oauth_password']              = 'OAuth Password';
 $_['entry_partner_name']                = 'Partner Name';
 $_['entry_partner_code']				= 'Partner Code';
 $_['entry_point_code']				 	= 'Point Code';
-$_['entry_agreement_file']		 		= 'Файл оферты';
-$_['entry_delivery_items']		 		= 'Способы доставки для подтверждения через смс';
 $_['entry_status']		                = 'Статус';
 $_['entry_paid_order_status']           = 'Статус оплаченных заказов';
 $_['entry_unpaid_order_status']         = 'Статус неуспешных заказов';
-$_['entry_delivery_order_status']       = 'Статус доставленных заказов';
-$_['entry_return_order_status']         = 'Статус возвращенных заказов';
-$_['entry_cancel_order_status']         = 'Статус отмененных заказов';
 $_['entry_debug_mode']                  = 'Включить режим отладки';
 
 // Help
@@ -42,18 +37,3 @@ $_['error_oauth_password']              = 'Необходимо указать O
 $_['error_partner_name']                = 'Необходимо указать Partner Name';
 $_['error_partner_code']				= 'Необходимо указать Partner Code';
 $_['error_point_code']				 	= 'Необходимо указать Point Code';
-$_['error_agreement_file']		 		= 'Необходимо загрузить файл политики';
-$_['error_agreement_file_delete']		= 'Неудача!';
-
-
-// Success
-$_['success_agreement_file_delete']		= 'Успех!';
-
-// Return and OTP
-$_['text_return_amount'] = 'Сумма';
-$_['text_return_enter_amount'] = 'Введите сумму возврата';
-$_['text_return_amount_helper'] = 'Оставьте это поле пустым или укажите 0 для полного возврата. Иначе будет частичный возврат.';
-$_['text_return_button'] = 'Возврат';
-$_['text_check_otp_title'] = 'Проверить OTP';
-$_['text_check_otp_enter_otp'] = 'Введите OTP код';
-$_['text_check_otp_button'] = 'Проверить';
